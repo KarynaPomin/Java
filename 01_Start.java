@@ -3,10 +3,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner userScan = new Scanner(System.in); // Represents the standard input stream
+        Scanner userScan = new Scanner(System.in); // Create a Scanner object, input stream
 
         System.out.print("Your name: ");
-        String userName = userScan.nextLine(); // Reads a string directly
+        String userName = userScan.nextLine(); // Read user input
         System.out.print("Your age: ");
         int userNum = userScan.nextInt(); // Reads an integer directly
         System.out.println("\nHello " + userName);
