@@ -30,24 +30,28 @@ public class MyFrame extends JFrame {
 
         addButton.setBounds(50, 50, 100, 50);
         addButton.setBackground(buttonBackground);
+        addButton.setFocusPainted(false);
         addButton.addActionListener(
                 (e) -> Calculating('+')
         );
 
         subtractButton.setBounds(170, 50, 100, 50);
         subtractButton.setBackground(buttonBackground);
+        subtractButton.setFocusPainted(false);
         subtractButton.addActionListener(
                 (e) -> Calculating('-')
         );
 
         multiplyButton.setBounds(50, 110, 100, 50);
         multiplyButton.setBackground(buttonBackground);
+        multiplyButton.setFocusPainted(false);
         multiplyButton.addActionListener(
                 (e) -> Calculating('*')
         );
 
         divideButton.setBounds(170, 110, 100, 50);
         divideButton.setBackground(buttonBackground);
+        divideButton.setFocusPainted(false);
         divideButton.addActionListener(
                 (e) -> Calculating('/')
         );
