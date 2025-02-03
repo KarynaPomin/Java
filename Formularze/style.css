@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+p{
+    font-size: large;
+    font-weight: bold;
+}
+
+h1{
+    font-size: medium;
+}
+
+h2{
+    font-size: small;
+}
+
+h3{
+    font-size: smaller;
+}
+
+.container {
+    background: white;
+    padding: 5px;
+    border: black solid 2px;
+}
+
+table{
+    width: 100%; 
+}
+
+.collapse-table{
+    border-collapse: collapse;
+}
+
+.collapse-table td{
+    border: 1px solid black;
+}
+
+.collapse-table th{
+    height: auto;
+    border: 1px solid black;
+    background: #D1D1D1;
+    text-align: left;
+}
+
+#C-table{
+    border: none;
+}
+
+#C-table tr{
+    height: 5vh;
+    border: 1px solid black;
+}
+
+#C-table tr[name="table-C-15"] td {
+    border: 1px solid black; 
+    padding: 5px;
+    padding-bottom: 20px;
+    text-align: left;
+    font-weight: bold;
+    background: white;
+}
+
+.box{
+    border: 1px solid black;
+    background: #a7a5a5;
+    margin-bottom: 10px;
+    padding: 2px;
+}
+
+.box td[name="white-col"]{
+    background: white;
+    text-align: left;
+    top: 0;
+    padding-bottom: 15px;
+    border: 1px solid black;
+}
