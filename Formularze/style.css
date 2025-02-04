@@ -1,310 +1,682 @@
-<!doctype html>
-<html class="no-js" lang="">
+/*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
+/* main.css 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
+html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+}
 
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
-</head>
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Customize the background color to match your design.
+ */
 
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <table>
-      <colgroup>
-        <col style="width: 20%;">
-        <col style="width: 80%;">
-      </colgroup>
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
 
-      <tr>
-        <td>
-          <p>Wn-D</p>
-        </td>
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
 
-        <td>
-          <h2>Wniosek o wypłatę miesięcznego dofinansowania do wynagrodzeń pracowników niepełnosprawnych</h2>
-        </td>
-      </tr>
-    </table>
+/*
+ * A better looking default horizontal rule
+ */
 
-    <div class="box" id="f-box">
-      <table>
-        <colgroup>
-          <col style="width: 30%;">
-          <col style="width: 70%;">
-        </colgroup>
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
 
-        <tr>
-          <td><h3> Podstawa prawna: </h3></td>
-          <td><h3>  Art. 26c ust. 1 pkt 2 ustawy z dnia 27 sierpnia 1997 r. o rehabilitacji zawodowej i społecznej oraz zatrudnianiu osób niepełnosprawnych, zwanej dalej „ustawą”.  </h3></td>
-        </tr>
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
 
-        <tr>
-          <td><h3> Składający: </h3></td>
-          <td><h3>  Pracodawca, o którym mowa w art. 26a ustawy, któremu przysługuje dofinansowanie do wynagrodzenia osób niepełnosprawnych ze środków PFRON.  </h3></td>
-        </tr>
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
 
-        <tr>
-          <td><h3> Termin składania: </h3></td>
-          <td><h3>  Do 25 dnia miesiąca następującego po miesiącu, którego dotyczy wniosek.  </h3></td>
-        </tr>
+/*
+ * Remove default fieldset styles.
+ */
 
-        <tr>
-          <td><h3> Adresat: </h3></td>
-          <td><h3>  Zarząd Państwowego Funduszu Rehabilitacji Osób Niepełnosprawnych, Al. Jana Pawła II 13, 00-828 Warszawa.  </h3></td>
-        </tr>
-      </table>
-    </div>
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
 
-    <div class="box" id="A-box">
-      <h1> A. Dane o dokumencie </h1>
+/*
+ * Allow only vertical resizing of textareas.
+ */
 
-      <table class="collapse-table">
-        <colgroup>
-          <col style="width: 30%;">
-          <col style="width: 70%;">
-        </colgroup>
+textarea {
+  resize: vertical;
+}
 
-        <tr>
-          <th><h2> 1. Rodzaj dokumentu </h2></th>
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
 
-          <td name="white-col">
-            <div class="checkboxes">
-              <input type="checkbox" name="checkBox-A" id="checked_1-A1"><label for="checked_1-A1">1. Zgłszeniowy</label>
-              <input type="checkbox" name="checkBox-A" id="checked_2-A1"><label for="checked_2-A1">2. Dotyczący miesięcznego dofinansowania</label>
-              <input type="checkbox" name="checkBox-A" id="checked_3-A1"><label for="checked_3-A1">3. Korygujący</label>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
 
-    <div class="box" id="B-box">
-      <table>
-        <tr>
-          <td>
-            <h1> B. Dane ewidencyjne pracodawcy </h1>
-          </td>
-          <td name="white-col" id="p-2">
-            <h2> 2. Number w rejestrze PFRON <input type="text" maxlength="9"> </h2>
-          </td>
-        </tr>
+/*
+ * Hide visually and from screen readers
+ */
 
-      </table>
+.hidden,
+[hidden] {
+  display: none !important;
+}
 
-      <table class="collapse-table">
-        <tr>
-          <td name="white-col" id="p-3"><h2> 3. NIP <br><input type="text" id="pole-3" maxlength="10"> </h2></td>
-          <td colspan="2" name="white-col" id="p-4"><h2> 4. REGON <br><input type="text" id="pole-4"> </h2></td>
-          <td colspan="3" name="white-col" id="p-5"><h2> 5. Pełna nazwa <br><input type="text" id="pole-5"> </h2></td>
-        </tr>
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
 
-        <tr>
-          <td name="white-col" id="p-6"><h2> 6.Forma prawna(1) <br><input type="text" maxlength="2" id="pole-6"> </h2></td>
-          <td name="white-col" id="p-7"><h2> 7. Forma prawna(2) <br><input type="text"  id="pole-7"> </h2></td>
-          <td name="white-col" id="p-8"><h2> 8. Forma własności <br><input type="number" max="6" id="pole-8"> </h2></td>
-          <td name="white-col" id="p-9"><h2> 9. Wielkość <br><input type="number" max="4" id="pole-9"> </h2></td>
-          <td name="white-col" id="p-10"><h2> 10. Indefikator adresu <br><input type="number" maxlength="7" id="pole-10"> </h2></td>
-          <td name="white-col" id="p-11"><h2> 11. PKD <br><input type="text" maxlength="5" id="pole-11"> </h2></td>
-        </tr>
-      </table>
-    </div>
+.visually-hidden {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  /* 1 */
+}
 
-    <div class="box" id="C-box">
-      <h1> C. Wniosek o wypatę dofinansowania </h1>
+/*
+ * Extends the .visually-hidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
 
-      <table id="C-table">
-        <tr>
-          <td>
-            <table class="collapse-table">
-              <tr>
-                <th colspan="2" name="white-col" id="p-12"><h2> 12. Okres sprawozdawczy </h2></th>
-              </tr>
-              <tr>
-                <td name="white-col" id="p-12-1"><h2> 1. Miesiąc <br><input type="month" id="pole-12-1"> </h2></td>
-                <td name="white-col" id="p-12-2"><h2> 2. Rok <br><input type="number" id="pole-12-2"> </h2></td>
-              </tr>
-            </table>
-          </td>
+.visually-hidden.focusable:active,
+.visually-hidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
 
-          <td>
-            <table class="collapse-table">
-              <tr>
-                <th><h2> 13. Należna kwota dofinansowania </h2></th>
-              </tr>
-              <tr>
-                <td name="white-col" id="p-13"><h2> <br><input type="number" id="pole-13"> </h2></td>
-              </tr>
-            </table>
-          </td>
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
 
-          <td name="white-col">
-            <table class="collapse-table">
-              <tr>
-                <th><h2> 14. Liczba załączników INF-D-P do składanego wniosku </h2></th>
-              </tr>
-              <tr>
-                <td name="white-col" id="p-14"><h2> <br><input type="number" id="pole-14"> </h2></td>
-              </tr>
-            </table>
-          </td>
-        </tr>
+.invisible {
+  visibility: hidden;
+}
 
-        <tr style="height: 5vh;" name="table-C-15">
-          <td colspan="3" name="white-col" id="p-15"><h2> 15. Rachunek bankowy pracodawcy, na który będzie przekazywane dofinansowanie <br><input type="text" maxlength="26" id="pole-15"> </h2></td>
-        </tr>
-      </table>
-    </div>
+/*
+ * Clearfix: contain floats
+ *
+ * The use of `table` rather than `block` is only necessary if using
+ * `::before` to contain the top-margins of child elements.
+ */
 
-    <div class="box" id="D-box">
-      <p> D. Dodatkowe informacje o pacodawcy </p>
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+}
 
-      <table name="collapse-table" id="D-1-table">
-        <tr>
-          <th colspan="5"><h1> D.1. Adress </h1></th>
-        </tr>
+.clearfix::after {
+  clear: both;
+}
 
-        <tr>
-          <td colspan="2" name="white-col" id="p-16"><h2> 16. Ulica <br><input type="text" id="pole-16"> </h2></td>
-          <td name="white-col" id="p-17"><h2> 17. Nr domu <br><input type="text" id="pole-17"> </h2></td>
-          <td name="white-col" id="p-18"><h2> 18. Nr lokalu <br><input type="text" id="pole-18"> </h2></td>
-          <td name="white-col" id="p-19"><h2> 19. Miejscowość <br><input type="text" id="pole-19"> </h2></td>
-        </tr>
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
 
-        <tr>
-          <td name="white-col" id="p-20"><h2> 20. Kod pocztowy <br><input type="text" id="pole-20"> </h2></td>
-          <td name="white-col" id="p-21"><h2> 21. Poczta <br><input type="text" id="pole-21"> </h2></td>
-          <td name="white-col" id="p-22"><h2> 22. Telefon <br><input type="text" id="pole-22"> </h2></td>
-          <td name="white-col" id="p-23"><h2> 23. Faks <br><input type="text" id="pole-23"> </h2></td>
-          <td name="white-col" id="p-24"><h2> 24. E-mail <br><input type="text" id="pole-24"> </h2></td>
-        </tr>
-      </table>
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
 
-      <table name="collapse-table" id="D-2-table">
-        <tr>
-          <th colspan="3" style="width: 60%;"><h1> D.2. Adres do korespondencji / Dane pełnomocnika </h1></th>
-          <td colspan="2" name="white-col" id="p-25"><h2> 25. Pełnomocnik <br><input type="text" id="pole-25"> </h2></td>
-        </tr>
+@media print,
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 1.25dppx),
+  (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
+}
 
-        <tr>
-          <td colspan="2" name="white-col" id="p-26"><h2> 26. Ulica <br><input type="text" id="pole-26"> </h2></td>
-          <td name="white-col" id="p-27"><h2> 27. Nr domu <br><input type="text" id="pole-27"> </h2></td>
-          <td name="white-col" id="p-28"><h2> 28. Nr lokalu <br><input type="text" id="pole-28"> </h2></td>
-          <td name="white-col" id="p-29"><h2> 29. Miejscowość <br><input type="text" id="pole-29"> </h2></td>
-        </tr>
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
 
-        <tr>
-          <td style="width: 15%;" name="white-col" id="p-30"><h2> 30. Kod pocztowy <br><input type="text" id="pole-30"> </h2></td>
-          <td style="width: 25%;" name="white-col" id="p-31"><h2> 31. Poczta <br><input type="text" id="pole-31"> </h2></td>
-          <td style="width: 20%;" name="white-col" id="p-32"><h2> 32. Telefon <br><input type="text" id="pole-32"> </h2></td>
-          <td style="width: 20%;" name="white-col" id="p-33"><h2> 33. Faks <br><input type="text" id="pole-33"> </h2></td>
-          <td style="width: 20%;" name="white-col" id="p-34"><h2> 34. E-mail <br><input type="text" id="pole-34"> </h2></td>
-        </tr>
-      </table>
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: #fff !important;
+    color: #000 !important;
+    /* Black prints faster */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
 
-      <table class="collapse-table">
-        <colgroup>
-          <col style="width: 30%">
-          <col style="width: 70%">
-        </colgroup>
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
 
-        <tr>
-          <th><h2> D.3. Status pracodawcy </h2></th>
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
 
-          <td name="white-col">
-            <div class="checkboxes">
-              <input type="checkbox" name="checkBox-D" id="checked_1-D35"><label for="checked_1-D35"> 1. Zakład pracy chronionej </label>
-              <input type="checkbox" name="checkBox-D" id="checked_2-D35"><label for="checked_2-D35"> 2. Zakład aktywności zawodowej </label>
-              <input type="checkbox" name="checkBox-D" id="checked_3-D35"><label for="checked_3-D35"> 3. Inny pracodawca </label>
-            </div>
-          </td>
-        </tr>
-      </table>
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
 
-      <table name="collapse-table">
-        <tr>
-          <th style="width: 80%;"><h2> D.4. Liczba osób niepełnosprawnych nowo zatrudnionych w okresie sprawozdawczym </h2></th>
-          <td name="white-col" id="p-36"><h4> 36. <br><input type="text" id="pole-36"> </h4></td>
-        </tr>
-      </table>
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
 
-      <table name="collapse-table" id="D-5-table">
-        <tr>
-          <th colspan="6" id="p-D2"><h2> D.5. Informacja o stanach zatrudnienia </h2></th>
-        </tr>
+  pre {
+    white-space: pre-wrap !important;
+  }
 
-        <tr id="p-D2-stan">
-          <th colspan="2"><h2> Stan zatrudnienia w okresie sprawozdawczym </h2></th>
-          <th colspan="2"><h2> Bieżący stan zatrudnienia w okresie sprawozdawczym </h2></th>
-          <th colspan="2"><h2> Średni stan zatrudnienia za 12 miesięcy poprzedzających okres sprawozdawczy </h2></th>
-        </tr>
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
 
-        <tr id="p-D2-osoby">
-          <th><h2> Ogółem </h2></th>
-          <th><h2> Osoby niepełnosprawne </h2></th>
-          <th><h2> Ogółem </h2></th>
-          <th><h2> Osoby niepełnosprawne </h2></th>
-          <th><h2> Ogółem </h2></th>
-          <th><h2> Osoby niepełnosprawne </h2></th>
-        </tr>
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
 
-        <tr>
-          <td name="white-col" id="pole-37"><h4> 37. <br><input type="text"> </h4></td>
-          <td name="white-col" id="pole-38"><h4> 38. <br><input type="text"> </h4></td>
-          <td name="white-col" id="pole-39"><h4> 39. <br><input type="text"> </h4></td>
-          <td name="white-col" id="pole-40"><h4> 40. <br><input type="text"> </h4></td>
-          <td name="white-col" id="pole-41"><h4> 41. <br><input type="text"> </h4></td>
-          <td name="white-col" id="pole-42"><h4> 42. <br><input type="text"> </h4></td>
-        </tr>
-      </table>
-    </div>
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
 
-    <div class="box" id="l-box">
-      <table class="collapse-table">
-        <tr>
-          <th colspan="3"><h3>
-            Oświadczam, że:
-            <ul>
-              <li>Nie posiadam zaległości w zobowiązaniach wobec PFRON w kwocie przekraczającej ogółem 100 zł.</li>
-              <li>Nie jestem przedsiębiorcą znajdującym się w trudnej sytuacji ekonomicznej według kryteriów określonych w przepisach prawa Unii Europejskiej dotyczących udzielania pomocy publicznej.</li>
-              <li>Dane zawarte we wniosku oraz w załączonych do wniosku miesięcznych informacjach o wynagrodzeniach, zatrudnieniu i stopniach niepełnosprawności pracowników niepełnosprawnych (INF-D-P) są zgodne ze stanem prawnym i faktycznym.</li>
-              <li>Jestem świadomy(a) odpowiedzialności karnej za zeznanie nieprawdy lub zatajenie prawdy.</li>
-              <li>Wybieram <input type="checkbox"> <strong>elektroniczną</strong> / <input type="checkbox"> <strong>pisemną</strong> formę składania wniosku.</li>
-            </ul>
-          </h3></th>
-        </tr>
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
 
-        <tr>
-          <td name="white-col" id="p-43"><h2> 43. Data wypełnienia wniosku <br><input type="date" id="pole-43"> </h2></td>
-          <td name="white-col" id="p-44"><h2> 44. Imię, nazwisko i podpis pracodawcy lub osoby upoważnionej <br><input type="text" id="pole-44"> </h2></td>
-          <td name="white-col" id="p-45"><h2> 45. Pieczęć pracodawcy <br></h2></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</body>
+body {
+  font-family: Arial, sans-serif;
+  padding: 2mm;
+  background-color: #f4f4f4;
+  height: 29.7cm;
+  width: 20cm;
+}
 
-</html>
+.checkboxes {
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+}
+
+p{
+  font-size: 12px;
+  font-weight: bold;
+}
+
+h1{
+  font-size: 11px;
+  text-align: left;
+  font-weight: bold;
+}
+
+h2{
+  font-size: 11px;
+  font-weight: bold;
+}
+
+h3{
+  font-size: 8px;
+  font-weight: normal;
+}
+
+h4{
+  font-size: 8px;
+  font-weight: bold;
+}
+
+.container {
+  background: white;
+  padding: 10px;
+  border: black solid 2px;
+  max-width: 900px;
+  margin: auto;
+}
+
+table{
+  width: 100%;
+}
+
+.collapse-table{
+  border-collapse: collapse;
+}
+
+.collapse-table td{
+  border: 1px solid black;
+}
+
+.collapse-table th{
+  height: auto;
+  border: 1px solid black;
+  background: #D1D1D1;
+  text-align: left;
+}
+
+#D-table{
+  margin-bottom: 1mm;
+}
+
+#D-1-table, #D-2-table, #D-5-table{
+  border-collapse: collapse;
+}
+
+#D-1-table td, #D-2-table td, #D-5-table td{
+  border: 1px solid black;
+}
+
+#C-table tr{
+  height: 0.3mm;
+  border: 1px solid black;
+}
+
+#C-table tr[name="table-C-15"] td {
+  border: 1px solid black;
+  padding: 5px;
+  padding-bottom: 20px;
+  text-align: left;
+  font-weight: bold;
+  background: white;
+}
+
+.box{
+  border: 1px solid black;
+  background: #e0e0e0;
+  margin-bottom: 1mm;
+  padding: 10px;
+}
+
+.box td[name="white-col"]{
+  background: white;
+  text-align: left;
+}
+
+.box td[name="white-col"] input{
+  margin: 0.5mm;
+  width: auto;
+}
+
+.box tr{
+  height: 2mm;
+}
+
+table th{
+  background: #D1D1D1;
+}
+
+#p-2{
+  width: 25%;
+}
+#p-2 input{
+  width: 80px;
+}
+
+#p-3{
+  width: 20%;
+}
+#p-3 input{
+  width: 80px;
+}
+
+#p-4{
+  width: 40%;
+}
+#p-4 input{
+  width: 120px;
+}
+
+#p-5{
+  width: 40%;
+}
+#p-5 input{
+  width: 220px;
+}
+
+#p-6{
+  width: 15%;
+}
+#p-6 input{
+  width: 20px;
+}
+
+#p-7{
+  width: 15%;
+}
+#p-7 input{
+  width: 40px;
+}
+
+#p-8{
+  width: 15%;
+}
+#p-8 input{
+  width: 40px;
+}
+
+#p-9{
+  width: 15%;
+}
+#p-9 input{
+  width: 40px;
+}
+
+#p-10{
+  width: 20%;
+}
+#p-10 input{
+  width: 80px;
+}
+
+#p-11{
+  width: 10%;
+}
+#p-11 input{
+  width: 50px;
+}
+
+#p-12{
+  width: 25%;
+}
+#p-12 input{
+  width: 50px;
+}
+#p-12-1, #p-12-2{
+  width: 50%;
+}
+#p-12-1 input, #p-12-2 input{
+  width: 60px;
+}
+
+#p-13{
+  width: 25%;
+}
+#p-13 input{
+  width: 150px;
+}
+
+#p-14{
+  width: 50%;
+}
+#p-14 input{
+  width: 150px;
+}
+
+#p-15{
+  width: 100%;
+}
+#p-15 input{
+  width: 80%;
+}
+
+#p-16{
+  width: 30%;
+}
+#p-16 input{
+  width: 200px;
+}
+
+#p-17{
+  width: 20%;
+}
+#p-17 input{
+  width: 50px;
+}
+
+#p-18{
+  width: 20%;
+}
+#p-18 input{
+  width: 50px;
+}
+
+#p-19{
+  width: 30%;
+}
+#p-19 input{
+  width: 80px;
+}
+
+#p-20{
+  width: 15%;
+}
+#p-20 input{
+  width: 70px;
+}
+
+#p-21{
+  width: 25%;
+}
+#p-21 input{
+  width: 100px;
+}
+
+#p-22{
+  width: 20%;
+}
+#p-22 input{
+  width: 80px;
+}
+
+#p-23{
+  width: 20%;
+}
+#p-23 input{
+  width: 50px;
+}
+
+#p-24{
+  width: 20%;
+}
+#p-24 input{
+  width: 80px;
+}
+
+#p-25{
+  width: 40%;
+}
+#p-25 input{
+  width: 200px;
+}
+
+#p-26{
+   width: 30%;
+ }
+#p-26 input{
+  width: 50px;
+}
+
+#p-27{
+  width: 20%;
+}
+#p-27 input{
+  width: 50px;
+}
+
+#p-28{
+  width: 20%;
+}
+#p-28 input{
+  width: 50px;
+}
+
+#p-29{
+  width: 30%;
+}
+#p-29 input{
+  width: 80px;
+}
+
+#p-30{
+  width: 15%;
+}
+#p-30 input{
+  width: 100px;
+}
+
+#p-31{
+  width: 25%;
+}
+#p-31 input{
+  width: 100px;
+}
+
+#p-32{
+  width: 20%;
+}
+#p-32 input{
+  width: 80px;
+}
+
+#p-33{
+  width: 20%;
+}
+#p-33 input{
+  width: 50px;
+}
+
+#p-34{
+  width: 20%;
+}
+#p-34 input{
+  width: 80px;
+}
+
+#p-36{
+  width: 20%;
+}
+#p-36 input{
+  width: 80px;
+}
+
+#p-D2{
+  width: 100%;
+  text-align: left;
+}
+
+#p-D2-stan{
+  width: 30%;
+}
+
+#p-D2-osoby th{
+  width: 15%;
+}
+
+#p-37{
+  width: 15%;
+}
+#p-37 input{
+  width: 20px;
+}
+
+#p-38{
+  width: 15%;
+}
+#p-38 input{
+  width: 20px;
+}
+
+#p-39{
+  width: 15%;
+}
+#p-39 input{
+  width: 20px;
+}
+
+#p-40{
+  width: 15%;
+}
+#p-40 input{
+  width: 20px;
+}
+
+#p-41{
+  width: 15%;
+}
+#p-41 input{
+  width: 20px;
+}
+
+#p-42{
+  width: 15%;
+}
+#p-42 input{
+  width: 20px;
+}
+
+#p-43{
+  width: 30%;
+}
+#p-43 input{
+  width: 20px;
+}
+
+#p-44{
+  width: 50%;
+}
+#p-44 input{
+  width: 20px;
+}
+
+#p-45{
+  width: 20%;
+}
+
