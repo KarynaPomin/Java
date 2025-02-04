@@ -33,28 +33,30 @@
 </head>
 <body>
   <div class="container">
-    <table>
-      <colgroup>
-        <col style="width: 20%;">
-        <col style="width: 80%;">
-      </colgroup>
-
-      <tr>
-        <td>
-          <p>Wn-D</p>
-        </td>
-
-        <td>
-          <h2>Wniosek o wypłatę miesięcznego dofinansowania do wynagrodzeń pracowników niepełnosprawnych</h2>
-        </td>
-      </tr>
-    </table>
+    <div class="top-box">
+        <table>
+            <colgroup>
+              <col style="width: 10%;">
+              <col style="width: 90%;">
+            </colgroup>
+      
+            <tr>
+              <td>
+                <p>Wn-D</p>
+              </td>
+      
+              <td>
+                <h2>Wniosek o wypłatę miesięcznego dofinansowania do wynagrodzeń pracowników niepełnosprawnych</h2>
+              </td>
+            </tr>
+          </table>
+    </div>
 
     <div class="box" id="f-box">
-      <table>
+      <table id="f-table">
         <colgroup>
-          <col style="width: 30%;">
-          <col style="width: 70%;">
+          <col style="width: 10%;">
+          <col style="width: 90%;">
         </colgroup>
 
         <tr>
@@ -82,7 +84,7 @@
     <div class="box" id="A-box">
       <h1> A. Dane o dokumencie </h1>
 
-      <table class="collapse-table">
+      <table id="A-table">
         <colgroup>
           <col style="width: 30%;">
           <col style="width: 70%;">
@@ -92,6 +94,8 @@
           <th><h2> 1. Rodzaj dokumentu </h2></th>
 
           <td name="white-col">
+            <h4> 1. </h4>
+
             <div class="checkboxes">
               <input type="checkbox" name="checkBox-A" id="checked_1-A1"><label for="checked_1-A1">1. Zgłszeniowy</label>
               <input type="checkbox" name="checkBox-A" id="checked_2-A1"><label for="checked_2-A1">2. Dotyczący miesięcznego dofinansowania</label>
@@ -103,9 +107,9 @@
     </div>
 
     <div class="box" id="B-box">
-      <table>
+      <table id="B-table-1">
         <tr>
-          <td>
+          <td id="p-B">
             <h1> B. Dane ewidencyjne pracodawcy </h1>
           </td>
           <td name="white-col" id="p-2">
@@ -115,7 +119,7 @@
 
       </table>
 
-      <table class="collapse-table">
+      <table id="B-table-2">
         <tr>
           <td name="white-col" id="p-3"><h2> 3. NIP <br><input type="text" id="pole-3" maxlength="10"> </h2></td>
           <td colspan="2" name="white-col" id="p-4"><h2> 4. REGON <br><input type="text" id="pole-4"> </h2></td>
@@ -139,7 +143,7 @@
       <table id="C-table">
         <tr>
           <td>
-            <table class="collapse-table">
+            <table id="C-table-1">
               <tr>
                 <th colspan="2" name="white-col" id="p-12"><h2> 12. Okres sprawozdawczy </h2></th>
               </tr>
@@ -151,7 +155,7 @@
           </td>
 
           <td>
-            <table class="collapse-table">
+            <table id="C-table-2">
               <tr>
                 <th><h2> 13. Należna kwota dofinansowania </h2></th>
               </tr>
@@ -162,7 +166,7 @@
           </td>
 
           <td name="white-col">
-            <table class="collapse-table">
+            <table id="C-table-3">
               <tr>
                 <th><h2> 14. Liczba załączników INF-D-P do składanego wniosku </h2></th>
               </tr>
@@ -173,7 +177,7 @@
           </td>
         </tr>
 
-        <tr style="height: 5vh;" name="table-C-15">
+        <tr>
           <td colspan="3" name="white-col" id="p-15"><h2> 15. Rachunek bankowy pracodawcy, na który będzie przekazywane dofinansowanie <br><input type="text" maxlength="26" id="pole-15"> </h2></td>
         </tr>
       </table>
@@ -217,11 +221,11 @@
         </tr>
 
         <tr>
-          <td style="width: 15%;" name="white-col" id="p-30"><h2> 30. Kod pocztowy <br><input type="text" id="pole-30"> </h2></td>
-          <td style="width: 25%;" name="white-col" id="p-31"><h2> 31. Poczta <br><input type="text" id="pole-31"> </h2></td>
-          <td style="width: 20%;" name="white-col" id="p-32"><h2> 32. Telefon <br><input type="text" id="pole-32"> </h2></td>
-          <td style="width: 20%;" name="white-col" id="p-33"><h2> 33. Faks <br><input type="text" id="pole-33"> </h2></td>
-          <td style="width: 20%;" name="white-col" id="p-34"><h2> 34. E-mail <br><input type="text" id="pole-34"> </h2></td>
+          <td name="white-col" id="p-30"><h2> 30. Kod pocztowy <br><input type="text" id="pole-30"> </h2></td>
+          <td name="white-col" id="p-31"><h2> 31. Poczta <br><input type="text" id="pole-31"> </h2></td>
+          <td name="white-col" id="p-32"><h2> 32. Telefon <br><input type="text" id="pole-32"> </h2></td>
+          <td name="white-col" id="p-33"><h2> 33. Faks <br><input type="text" id="pole-33"> </h2></td>
+          <td name="white-col" id="p-34"><h2> 34. E-mail <br><input type="text" id="pole-34"> </h2></td>
         </tr>
       </table>
 
@@ -235,6 +239,8 @@
           <th><h2> D.3. Status pracodawcy </h2></th>
 
           <td name="white-col">
+            <h4>35.</h4>
+
             <div class="checkboxes">
               <input type="checkbox" name="checkBox-D" id="checked_1-D35"><label for="checked_1-D35"> 1. Zakład pracy chronionej </label>
               <input type="checkbox" name="checkBox-D" id="checked_2-D35"><label for="checked_2-D35"> 2. Zakład aktywności zawodowej </label>
@@ -246,23 +252,21 @@
 
       <table name="collapse-table">
         <tr>
-          <th style="width: 80%;"><h2> D.4. Liczba osób niepełnosprawnych nowo zatrudnionych w okresie sprawozdawczym </h2></th>
+          <th id="p-D4"><h2> D.4. Liczba osób niepełnosprawnych nowo zatrudnionych w okresie sprawozdawczym </h2></th>
           <td name="white-col" id="p-36"><h4> 36. <br><input type="text" id="pole-36"> </h4></td>
         </tr>
       </table>
 
       <table name="collapse-table" id="D-5-table">
         <tr>
-          <th colspan="6" id="p-D2"><h2> D.5. Informacja o stanach zatrudnienia </h2></th>
+          <th colspan="6" id="p-D5"><h2> D.5. Informacja o stanach zatrudnienia </h2></th>
         </tr>
-
-        <tr id="p-D2-stan">
+        <tr id="p-D5-stan">
           <th colspan="2"><h2> Stan zatrudnienia w okresie sprawozdawczym </h2></th>
           <th colspan="2"><h2> Bieżący stan zatrudnienia w okresie sprawozdawczym </h2></th>
           <th colspan="2"><h2> Średni stan zatrudnienia za 12 miesięcy poprzedzających okres sprawozdawczy </h2></th>
         </tr>
-
-        <tr id="p-D2-osoby">
+        <tr id="p-D5-osoby">
           <th><h2> Ogółem </h2></th>
           <th><h2> Osoby niepełnosprawne </h2></th>
           <th><h2> Ogółem </h2></th>
@@ -270,14 +274,13 @@
           <th><h2> Ogółem </h2></th>
           <th><h2> Osoby niepełnosprawne </h2></th>
         </tr>
-
-        <tr>
-          <td name="white-col" id="pole-37"><h4> 37. <br><input type="text"> </h4></td>
-          <td name="white-col" id="pole-38"><h4> 38. <br><input type="text"> </h4></td>
-          <td name="white-col" id="pole-39"><h4> 39. <br><input type="text"> </h4></td>
-          <td name="white-col" id="pole-40"><h4> 40. <br><input type="text"> </h4></td>
-          <td name="white-col" id="pole-41"><h4> 41. <br><input type="text"> </h4></td>
-          <td name="white-col" id="pole-42"><h4> 42. <br><input type="text"> </h4></td>
+        <tr id="p-D5-pola">
+          <td name="white-col" id="p-37"><h4> 37. <br><input type="text"> </h4></td>
+          <td name="white-col" id="p-38"><h4> 38. <br><input type="text"> </h4></td>
+          <td name="white-col" id="p-39"><h4> 39. <br><input type="text"> </h4></td>
+          <td name="white-col" id="p-40"><h4> 40. <br><input type="text"> </h4></td>
+          <td name="white-col" id="p-41"><h4> 41. <br><input type="text"> </h4></td>
+          <td name="white-col" id="p-42"><h4> 42. <br><input type="text"> </h4></td>
         </tr>
       </table>
     </div>
@@ -286,7 +289,7 @@
       <table class="collapse-table">
         <tr>
           <th colspan="3"><h3>
-            Oświadczam, że:
+            <strong>Oświadczam, że:</strong>
             <ul>
               <li>Nie posiadam zaległości w zobowiązaniach wobec PFRON w kwocie przekraczającej ogółem 100 zł.</li>
               <li>Nie jestem przedsiębiorcą znajdującym się w trudnej sytuacji ekonomicznej według kryteriów określonych w przepisach prawa Unii Europejskiej dotyczących udzielania pomocy publicznej.</li>
