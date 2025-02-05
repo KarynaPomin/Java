@@ -293,6 +293,7 @@ h4 {
   justify-content: start;
   padding-left: 30px;
   padding-right: 3px;
+  gap: 5px;
 }
 
 .top-box td, .top-box th {
@@ -750,10 +751,14 @@ table th {
   width: 20px;
 }
 
-#p-4 {
+#p-44 {
   width: 10%;
 }
 
 #p-44 input {
+  width: 20px;
+}
+
+#p-45 input {
   width: 20px;
 }
