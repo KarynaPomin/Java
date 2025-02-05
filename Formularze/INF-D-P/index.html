@@ -1,0 +1,678 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INF-D-P</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+<div class="container">
+  <div class="top-box">
+    <table>
+      <colgroup>
+        <col style="width: 10%;">
+        <col style="width: 90%;">
+      </colgroup>
+
+      <tr>
+        <td>
+          <p class="main-title">INF-D-P</p>
+        </td>
+
+        <td>
+          Miesięczna informacja o wynagrodzeniach, zatrudnieniu, stopniach i rodzaju niepełnosprawności pracowników niepełnosprawnych
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box" id="A-box">
+    <table id="A-table-1">
+      <tr>
+        <td id="p-A" class="section-title"> A. Dane ewidencyjne i adres pracownika </td>
+
+        <td name="white-col" id="p-1" class="form-section">
+          1. Number w rejestrze PFRON <br><input type="number" maxlength="9">
+        </td>
+
+        <td name="white-col" id="p-2" class="form-section">
+          2. PESEL <br><input type="number" pattern="\d{11}">
+        </td>
+      </tr>
+
+    </table>
+
+    <table id="A-table-2">
+      <tr>
+        <td name="white-col" id="p-3" class="form-section">
+          3. Numer dowodu osobistego <br>
+          <input type="number" id="pole-3">
+        </td>
+
+        <td colspan="2" name="white-col" id="p-4" class="form-section">
+          4. NIP <br>
+          <input type="number" id="pole-4">
+        </td>
+
+        <td colspan="3" name="white-col" id="p-5" class="form-section">
+          5. Nazwisko <br>
+          <input type="text" id="pole-5">
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" name="white-col" id="p-6" class="form-section">
+          6. Pierwsze imię <br>
+          <input type="text" maxlength="2" id="pole-6">
+        </td>
+
+        <td colspan="4" name="white-col" id="p-7" class="form-section">
+          7. Drugie imię <br>
+          <input type="text"  id="pole-7">
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" name="white-col" id="p-8" class="form-section">
+          8. Województwo <br>
+          <input type="number" max="6" id="pole-8">
+        </td>
+
+        <td colspan="4"  name="white-col" id="p-9" class="form-section">
+          9. Powiat <br>
+          <input type="number" max="4" id="pole-9">
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" name="white-col" id="p-10" class="form-section">
+          10. Gmina <br>
+          <input type="number" maxlength="7">
+        </td>
+
+        <td colspan="4" name="white-col" id="p-11" class="form-section">
+          11. Miejscowość <br>
+          <input type="text" maxlength="5">
+        </td>
+      </tr>
+
+      <tr>
+        <td name="white-col" id="p-12" class="form-section">
+          12. Kod pocztowy <br>
+          <input type="number" maxlength="7">
+        </td>
+
+        <td name="white-col" id="p-13" class="form-section">
+          13. Poczta <br>
+          <input type="text" maxlength="5">
+        </td>
+
+        <td colspan="2" name="white-col" id="p-14" class="form-section">
+          14. Ulica <br><input type="number" maxlength="7">
+        </td>
+
+        <td name="white-col" id="p-15" class="form-section">
+          15. Nr domu <br><input type="text" maxlength="5">
+        </td>
+
+        <td name="white-col" id="p-16" class="form-section">
+          16. Nr lokalu <br>
+          <input type="number" maxlength="7">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box" id="B-box">
+    <p class="section-title"> B. Wniosek o wypłatę dofinansowania </p>
+
+    <table id="B-table">
+      <colgroup>
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+      </colgroup>
+
+        <tr>
+            <td>
+                <table id="B-table-1">
+                  <colgroup>
+                    <col style="width: 50%;">
+                    <col style="width: 50%;">
+                  </colgroup>
+                  
+                    <tr>
+                        <th colspan="2" id="p-17" class="form-section">
+                          17. Okres sprawozdawczy 
+                        </th>
+                    </tr>
+                    <tr>
+                        <td name="white-col" id="p-17-1" class="form-section">
+                          1. Miesiąc <br>
+                          <input type="month">
+                        </td>
+
+                        <td name="white-col" id="p-17-2" class="form-section">
+                          2. Rok <br>
+                          <input type="number" min="1900" max="2099">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <table id="B-table-2">
+                    <tr>
+                        <th colspan="2" id="p-18" class="form-section">
+                          18. Okres wypłaty wynagrodzenia
+                        </th>
+                    </tr>
+            
+                    <tr>
+                        <td name="white-col" id="p-18-1" class="form-section">
+                          1. Miesiąc <br>
+                          <input type="month">
+                        </td>
+
+                        <td name="white-col" id="p-18-2" class="form-section">
+                          2. Rok <br>
+                          <input type="number" min="1900" max="2099">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <td class="form-section">
+                <table id="B-table-3">
+                    <tr>
+                        <th colspan="2" id="p-19" class="form-section">
+                          19. Informacja
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <td name="white-col">
+                          <div class="checkboxes">
+                            <input type="checkbox" id="checked_1-B19" maxlength="7">
+                            <label for="checked_1-B19">
+                              1. Tak </label><br>
+                            
+                            <input type="checkbox" id="checked_2-B19" maxlength="7">
+                            <label for="checked_2-B19">
+                              2. Nie </label>
+                          </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <td>
+                <table id="B-table-4">
+                    <tr>
+                        <th colspan="2" id="p-20" class="form-section">
+                          20. Numer kolejny informacji
+                        </th>
+                    </tr>
+                    <tr>
+                        <td name="white-col" id="p-20-1">
+                          <input type="number" min="1" max="99">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+  <div class="box" id="C-box">
+    <p  class="section-title"> C. Informacja o stopniu niepełnosprawności, zatrudnieniu i wynagrodzeniu </p>
+
+    <table id="C-table-1">
+      <colgroup>
+        <col style="width: 20%;">
+        <col style="width: 20%;">
+      </colgroup>
+
+      <tr>
+        <th colspan="2" id="p-C-table-1-empty"></th>
+        <th colspan="6" class="form-section">
+          Pacownik zatrudniony u pracodawcy prowadzącego zakład pracy chronionej 
+        </th>
+      </tr>
+
+      <tr>
+        <th rowspan="2" colspan="2" class="form-section">
+          Stopień i rodzaj niepełnosprawności
+        </th>
+        
+        <th colspan="3" class="form-section">
+          szczególne schorzenia
+        </th>
+        
+        <th colspan="3" class="form-section">
+          bez szczególnych schorzeń
+        </th>
+      </tr>
+
+      <tr>
+        <th class="form-section">
+          znaczny
+        </th>
+
+        <th class="form-section">
+          umiarkowany
+        </th>
+
+        <th class="form-section">
+          lekki
+        </th>
+
+        <th class="form-section">
+          znaczny
+        </th>
+
+        <th class="form-section">
+          umiarkowany
+        </th>
+
+        <th class="form-section">
+          lekki
+        </th>
+      </tr>
+
+      <tr>
+        <th rowspan="2" class="form-section">
+           Przeciętny miesięczny wymiar czasu pracy
+        </th>
+
+        <th class="form-section">
+          ogółem
+        </th>
+
+        <td name="white-col" id="p-21" class="top-index">
+          21. <br><input type="text">
+        </td>
+
+        <td name="white-col" id="p-22" class="top-index">
+          22. <br><input type="text">
+        </td>
+
+        <td name="white-col" id="p-23" class="top-index">
+          23. <br>
+          <input type="text">
+        </td>
+
+        <td name="white-col" id="p-24" class="top-index">
+          24. <br>
+          <input type="text">
+        </td>
+
+        <td name="white-col" id="p-25" class="top-index">
+          25. <br>
+          <input type="text">
+        </td>
+        
+        <td name="white-col" id="p-26" class="top-index">
+          26. <br>
+          <input type="text">
+        </td>
+      </tr>
+
+      <tr>
+        <th class="form-section">
+          w tym w okresie z ustalonym prawem do emerytury
+        </th>
+
+        <td name="white-col" id="p-27" class="form-section">
+          27. <br><input type="text">
+        </td>
+        
+        <td name="white-col" id="p-28" class="top-index">
+          28. <br>
+          <input type="text">
+        </td>
+        
+        <td name="white-col" id="p-29" class="top-index">
+          29. <br>
+          <input type="text">
+        </td>
+        <td name="white-col" id="p-30" class="top-index">
+          30. <br>
+          <input type="text">
+        </td>
+        <td name="white-col" id="p-31" class="top-index">
+          31. <br>
+          <input type="text">
+        </td>
+        <td name="white-col" id="p-32" class="top-index">
+          32. <br>
+          <input type="text"">
+        </td>
+      </tr>
+    </table>
+
+    <table id="C-table-2">
+      <colgroup>
+        <col style="width: 20%;">
+        <col style="width: 20%;">
+      </colgroup>
+
+      <tr>
+        <th colspan="2" id="p-C-table-2-empty"></th>
+
+        <th colspan="6" class="form-section">
+          Pacownik zatrudniony u pracodawcy nieprowadzącego zakład pracy chronionej
+        </th>
+      </tr>
+
+      <tr>
+        <th rowspan="2" colspan="2" class="form-section">
+          Stopień i rodzaj niepełnosprawności 
+        </th>
+        
+        <th colspan="3" class="form-section">
+          szczególne schorzenia 
+        </th>
+        
+        <th colspan="3" class="form-section">
+          bez szczególnych schorzeń 
+        </th>
+      </tr>
+
+      <tr>
+        <th class="form-section">
+          znaczny
+        </th>
+        
+        <th class="form-section">
+          umiarkowany
+        </th>
+        
+        <th class="form-section">
+          lekki
+        </th>
+        
+        <th class="form-section">
+          znaczny
+        </th>
+        
+        <th class="form-section">
+          umiarkowany
+        </th>
+        
+        <th class="form-section">
+          lekki
+        </th>
+      </tr>
+
+      <tr>
+        <th rowspan="2" class="form-section">
+          Przeciętny miesięczny wymiar czasu pracy
+        </th>
+        
+        <th class="form-section">
+          ogółem
+        </th>
+
+        <td name="white-col" id="p-33" class="top-index">
+          33. <br>
+          <input type="text">
+        </td>
+        
+        <td name="white-col" id="p-34" class="top-index">
+          34. <br>
+          <input type="text">
+        </td>
+        
+        <td name="white-col" id="p-35" class="top-index">
+          35. <br>
+          <input type="text">
+        </td>
+        
+        <td name="white-col" id="p-36" class="top-index">
+          36. <br>
+          <input type="text">
+        </td>
+        
+        <td name="white-col" id="p-37" class="top-index">
+          37. <br>
+          <input type="text">
+        </td>
+        
+        <td name="white-col" id="p-38" class="top-index">
+          38. <br>
+          <input type="text">
+        </td>
+      </tr>
+
+      <tr>
+        <th name="white-col" class="form-section">
+          w tym w okresie z ustalonym prawem do emerytury
+        </th>
+
+        <td name="white-col" id="p-39" class="top-index">
+          39. <br>
+          <input type="text">
+        </td>
+
+        <td name="white-col" id="p-40" class="top-index">
+          40. <br>
+          <input type="text">
+        </td>
+
+        <td name="white-col" id="p-41" class="top-index">
+          41. <br>
+          <input type="text">
+        </td>
+
+        <td name="white-col" id="p-42" class="top-index">
+          42. <br>
+          <input type="text">
+        </td>
+
+        <td name="white-col" id="p-43" class="top-index">
+          43. <br>
+          <input type="text">
+        </td>
+
+        <td name="white-col" id="p-44" class="top-index">
+          44. <br>
+          <input type="text">
+        </td>
+      </tr>
+    </table>
+
+    <table id="C-table-3">
+      <colgroup>
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+        <col style="width: 25%;">
+      </colgroup>
+
+      <tr>
+        <th class="form-section">
+           Zatrudnienie od dnia
+        </th>
+
+        <td name="white-col" id="p-45" class="top-index">
+          45. <br>
+          <input type="text">
+        </td>
+
+        <th class="form-section"> 
+          Dofinansowanie stanowi pomoc publiczną
+        </th>
+
+        <td name="white-col" id="p-46" class="top-index">
+          46. <br>
+
+          <div class="checkboxes">
+            <input type="checkbox" id="checked_1-C46" maxlength="7">
+            <label for="checked_1-B19">
+              1. Tak </label><br>
+            
+            <input type="checkbox" id="checked_2-C46" maxlength="7">
+            <label for="checked_2-B19">
+              2. Nie </label>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <table id="C-table-4">
+      <colgroup>
+        <col style="width: 75%">
+        <col style="width: 25%">
+      </colgroup>
+
+      <tr>
+        <th class="form-section">
+          Pracownik zatrudniany u pracodawcy wykonującego działalność gospodarczą
+        </th>
+        <td name="white-col" id="p-47" class="top-index">
+          47. <br>
+
+          <div class="checkboxes">
+            <input type="checkbox" id="checked_1-C47" maxlength="7">
+            <label for="checked_1-B19">
+              1. Tak </label><br>
+
+            <input type="checkbox" id="checked_2-C47" maxlength="7">
+            <label for="checked_2-B19">
+              2. Nie </label>
+          </div>
+
+        </td>
+      </tr>
+
+      <tr>
+        <th class="form-section"> 
+          Pracownik zatrudniany w warunkach efektu zachęty
+        </th>
+
+        <td name="white-col" id="p-48" class="top-index">
+          47. <br>
+
+          <div class="checkboxes">
+            <input type="checkbox" id="checked_1-C48" maxlength="7">
+            <label for="checked_1-B19">
+              1. Tak </label><br>
+
+            <input type="checkbox" id="checked_2-C48" maxlength="7">
+            <label for="checked_2-B19">
+              2. Nie </label>
+          </div>
+
+        </td>
+      </tr>
+
+      <tr>
+        <th class="form-section">
+          Kwota pomocy publicznej i pomocy <i>de minimis</i> otrzymanej przez składającego w odniesieniu do tych samych kosztów kwalifikujących się do objęcia pomocą
+        </th>
+
+        <td name="white-col" id="p-49" class="top-index">
+          49. <br>
+          <input type="text">
+        </td>
+
+      </tr>
+    </table>
+
+    <table id="C-table-5">
+      <colgroup>
+        <col style="width: 25%">
+        <col style="width: 25%">
+        <col style="width: 25%">
+        <col style="width: 25%">
+      </colgroup>
+
+      <tr>
+        <th class="form-section">
+          Minimalne wynagrodzenia
+        </th>
+
+        <td name="white-col" class="top-index">
+          50. <br><input type="text">
+        </td>
+
+        <th class="form-section">
+          Kwota ustalona na podstawie art. 26a ust. 1 i 1b ustawy
+        </th>
+
+        <td name="white-col" class="top-index">
+          51. <br>
+          <input type="text">
+        </td>
+      </tr>
+
+      <tr>
+        <th class="form-section">
+          Koszty płacy
+        </th>
+
+        <td name="white-col" class="top-index">
+          52. <br><input type="text">
+        </td>
+
+        <th class="form-section">
+          Pomniejszenia
+        </th>
+
+        <td name="white-col" class="top-index">
+          53. <br>
+          <input type="text">
+        </td>
+      </tr>
+
+      <tr>
+        <th class="form-section">
+          Limit kosztów płacy
+        </th>
+
+        <td name="white-col" class="top-index">
+          54. <br><input type="text">
+        </td>
+
+        <th class="form-section">
+          DO WYPŁATY
+        </th>
+
+        <td name="white-col" class="top-index">
+          55. <br><input type="text">
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</body>
+
+</html>
