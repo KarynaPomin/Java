@@ -1,6 +1,5 @@
 package pl.infobazasolution.expertimportexport;
 
-
 import Classes.FilesItem;
 import Classes.Person;
 import javafx.application.Application;
@@ -26,6 +25,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.nio.file.LinkOption;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
@@ -61,7 +61,8 @@ public class HelloApplication extends Application {
 
         InputStream stream = null;
         try {
-            stream = new FileInputStream("/home/karynap/IdeaProjects/ExpertImportExport/src/images/logo.jpg");
+//            stream = new FileInputStream("/home/karynap/IdeaProjects/ExpertImportExport/src/images/logo.jpg");
+            stream = new FileInputStream("C:\\JavaFX\\Table_FX\\src\\main\\java\\Images\\logo.jpg");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -76,36 +77,43 @@ public class HelloApplication extends Application {
         title.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
 
         Separator separator = new Separator(Orientation.HORIZONTAL);
+        separator.setMinWidth(50);
+        separator.setMaxWidth(240);
 
         TextField loginField = new TextField();
         loginField.setPromptText("Adres e-mail");
-        loginField.setPrefWidth(50);
+        loginField.setMinWidth(30);
+        loginField.setMaxWidth(200);
 
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Hasło");
-        passwordField.setPrefWidth(50);
+        passwordField.setMinWidth(30);
+        passwordField.setMaxWidth(200);
 
         Button loginButton = new Button("Zaloguj się");
         loginButton.getStyleClass().setAll("btn","btn-danger");
+        loginButton.setAlignment(Pos.CENTER);
+        loginButton.setMinWidth(50);
+        loginButton.setMaxWidth(100);
 
         Label messageLabel = new Label();
         messageLabel.setStyle("-fx-text-fill: red;");
 
         loginButton.setOnAction(e -> {
-//            if (loginField.getText().isBlank() || passwordField.getText().isBlank()) {
-//                messageLabel.setText("Pole nie może być puste.");
-//            }
-//
-//            if (loginField.getText().equals(person.login) && passwordField.getText().equals(person.password)) {
-//                primaryStage.setScene(mainScene());
-//                primaryStage.show();
-//            }
-//            else {
-//                messageLabel.setText("Login lub hasło jest niepoprawne!");
-//            }
+            if (loginField.getText().isBlank() || passwordField.getText().isBlank()) {
+                messageLabel.setText("Pole nie może być puste.");
+            }
 
-            primaryStage.setScene(mainScene());
-            primaryStage.show();
+            if (loginField.getText().equals(person.login) && passwordField.getText().equals(person.password)) {
+                primaryStage.setScene(mainScene());
+                primaryStage.show();
+            }
+            else {
+                messageLabel.setText("Login lub hasło jest niepoprawne!");
+            }
+
+//            primaryStage.setScene(mainScene());
+//            primaryStage.show();
         });
 
         VBox formBox = new VBox(
@@ -136,7 +144,8 @@ public class HelloApplication extends Application {
     private HBox MenuView(){
         InputStream stream = null;
         try {
-            stream = new FileInputStream("/home/karynap/IdeaProjects/ExpertImportExport/src/images/logo.jpg");
+//            stream = new FileInputStream("/home/karynap/IdeaProjects/ExpertImportExport/src/images/logo.jpg");
+            stream = new FileInputStream("C:\\JavaFX\\Table_FX\\src\\main\\java\\Images\\logo.jpg");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -181,6 +190,8 @@ public class HelloApplication extends Application {
         menuBox.setAlignment(Pos.TOP_LEFT);
         menuBox.setSpacing(10);
 
+        HBox.setHgrow(menuBox, Priority.ALWAYS);
+
         return menuBox;
     }
 
@@ -218,13 +229,17 @@ public class HelloApplication extends Application {
         Label userNameLabel = new Label("Imię: ");
         userNameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 11));
         TextField userNameField = new TextField();
-        VBox nameBox = new VBox(userNameLabel, userNameField);
+        VBox nameBox = new VBox(
+                userNameLabel,
+                userNameField);
 
         Label userSecondnameLabel = new Label("Nazwisko: ");
         userSecondnameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 11));
 
         TextField userSecondnameField = new TextField();
-        VBox secondnameBox = new VBox(userSecondnameLabel, userSecondnameField);
+        VBox secondnameBox = new VBox(
+                userSecondnameLabel,
+                userSecondnameField);
         secondnameBox.setSpacing(15);
 
         Label genderLabel = new Label("Płeć: ");
@@ -232,7 +247,9 @@ public class HelloApplication extends Application {
 
         RadioButton genderFemaleRadioButton = new RadioButton("K");
         RadioButton genderMaleRadioButton = new RadioButton("M");
-        HBox genderBox = new HBox(genderLabel, genderFemaleRadioButton, genderMaleRadioButton);
+        HBox genderBox = new HBox(genderLabel,
+                genderFemaleRadioButton, 
+                genderMaleRadioButton);
         genderBox.setSpacing(15);
 
         Label dateBirthLabel = new Label("Data urodzenia: ");
@@ -242,7 +259,9 @@ public class HelloApplication extends Application {
 
         DatePicker dateBirthField = new DatePicker();
 
-        HBox dateBox = new HBox(dateBirthLabel, dateBirthField);
+        HBox dateBox = new HBox(
+                dateBirthLabel, 
+                dateBirthField);
         dateBox.setSpacing(15);
 
         Label choiceBoxLabel = new Label("Kolor oczu: ");
@@ -251,7 +270,9 @@ public class HelloApplication extends Application {
         ChoiceBox choiceBox = new ChoiceBox();
         choiceBox.getItems().addAll("szare", "brązowe", "zielone", "niebieskie");
 
-        HBox colorEyesBox = new HBox(choiceBoxLabel, choiceBox);
+        HBox colorEyesBox = new HBox(
+                choiceBoxLabel, 
+                choiceBox);
         colorEyesBox.setSpacing(15);
 
         Label hobbyLabel = new Label("Zainteresowania: ");
@@ -262,7 +283,12 @@ public class HelloApplication extends Application {
         CheckBox hobbyCheckBox3 = new CheckBox("Rysowanie");
         CheckBox hobbyCheckBox4 = new CheckBox("Inne");
 
-        VBox hobbyBox = new VBox(hobbyLabel, hobbyCheckBox1, hobbyCheckBox2, hobbyCheckBox3, hobbyCheckBox4);
+        VBox hobbyBox = new VBox(
+                hobbyLabel, 
+                hobbyCheckBox1, 
+                hobbyCheckBox2, 
+                hobbyCheckBox3, 
+                hobbyCheckBox4);
         hobbyBox.setSpacing(15);
 
         VBox formBox = new VBox(
@@ -331,8 +357,11 @@ public class HelloApplication extends Application {
         tableView = new TableView<FilesItem>();
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        tableView.setPrefWidth(500);
+        tableView.setMinWidth(200);
         fileList = FXCollections.observableArrayList();
+
+        tableView.prefWidthProperty().bind(root.widthProperty().multiply(0.9));
+        tableView.prefHeightProperty().bind(root.heightProperty().multiply(0.8));
 
         Button selectDirectoryButton = new Button("Wybierz folder");
         selectDirectoryButton.getStyleClass().setAll("btn","btn-danger");
@@ -382,17 +411,21 @@ public class HelloApplication extends Application {
         showNewListFilesButton.getStyleClass().setAll("btn","btn-danger");
         showNewListFilesButton.setAlignment(Pos.CENTER);
         showNewListFilesButton.setOnAction(e -> {
-            try{
+            if (selectedDirectory == null){
+                messageLabel.setText("Wybierz folder");
+            }
+            else {
                 getSelectedIndices = tableView.getSelectionModel().getSelectedIndices();
                 primaryStage.setScene(tableViewScene());
                 primaryStage.show();
-            }catch (NullPointerException ex){
-                messageLabel.setText("Wybierz folder");
             }
         });
 
         HBox buttomBox = new HBox(
-                selectDirectoryButton, deleteButton, showNewListFilesButton, messageLabel
+                selectDirectoryButton, 
+                deleteButton, 
+                showNewListFilesButton,
+                messageLabel
         );
         buttomBox.setSpacing(10);
 
@@ -434,13 +467,16 @@ public class HelloApplication extends Application {
 
         TableView<FilesItem> tableView1 = new TableView<>();
         tableView1.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        tableView1.setPrefWidth(500);
+        tableView1.setMinWidth(200);
+
+        tableView1.prefWidthProperty().bind(root.widthProperty().multiply(0.9));
+        tableView1.prefHeightProperty().bind(root.heightProperty().multiply(0.8));
 
         TableColumn<FilesItem, Integer> idColumn = new TableColumn<>("Id");
         idColumn.setPrefWidth(10);
-        TableColumn<FilesItem, String> nameColumn = new TableColumn<>("Nazwa pliku");
-
         idColumn.setCellValueFactory(new PropertyValueFactory<>("idFile"));
+
+        TableColumn<FilesItem, String> nameColumn = new TableColumn<>("Nazwa pliku");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("nameFile"));
 
         tableView1.getColumns().add(idColumn);
@@ -465,6 +501,8 @@ public class HelloApplication extends Application {
         backButton.setAlignment(Pos.CENTER);
 
         backButton.setOnAction(e -> {
+            selectedDirectory = null;
+
             primaryStage.setScene(catalogScene());
             primaryStage.show();
         });
