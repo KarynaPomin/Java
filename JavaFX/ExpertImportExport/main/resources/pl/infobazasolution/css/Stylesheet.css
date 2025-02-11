@@ -1,0 +1,36 @@
+.btn {
+    -fx-background-color: #575454;
+    -fx-border-color: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6;
+
+    -fx-font: 11pt "Tahoma";
+}
+
+.btn:hover {
+    -fx-effect: dropshadow(one-pass-box, #112247, 8, 0.0, 2, 0);
+    -fx-background-radius: 6;
+}
+
+.loginField :focused{
+    -fx-background-color: -fx-grey-color, white;
+}
+
+.table-view, .table-view:focused {
+    -fx-border-color: #112247;
+    -fx-border-width: 1px;
+    -fx-padding: 0;
+    -fx-start-margin: 0;
+}
+
+.column-header {
+    -fx-background-color: rgb(116, 122, 142);
+    -fx-font: 11pt "Tahoma" white;
+}
+
+.column-header:focused{
+    -fx-background-color: rgba(35, 42, 57, 0.7);
+    -fx-font: 11pt "Tahoma" white;
+}
