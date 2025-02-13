@@ -33,16 +33,6 @@
     -fx-background-color: #3d5a73;
 }
 
-/*.imageView-login {*/
-/*    -fx-fit-width: 100;*/
-/*    -fx-fit-height: 100;*/
-/*}*/
-
-/*.imageView {*/
-/*    -fx-fit-width: 50;*/
-/*    -fx-fit-height: 50;*/
-/*}*/
-
 .loginField {
     -fx-background-color: #ffffff;
     -fx-text-fill: #2C3E50;
@@ -79,7 +69,16 @@
     -fx-max-width: 240;
 }
 
-.red .column-header{
-    -fx-background-color: #ff0000;
-    -fx-text-fill: #ffffff;
+//
+.red .column-header {
+    -fx-background-color: #ffcccc !important;
+    -fx-text-fill: #ffffff !important;
+}
+
+.table-row-cell:red-background {
+    -fx-background-color: #ffcccc !important;
+}
+
+.column-header :white-text {
+    -fx-text-fill: white !important;
 }
