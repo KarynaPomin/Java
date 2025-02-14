@@ -1,0 +1,113 @@
+.root {
+    -fx-background-color: #f5f7fa;
+    /*-fx-alignment: center;*/
+
+    -fx-font-family: Tahoma;
+    -fx-font-size: 12px;
+    /*-fx-text-alignment: center;*/
+
+    -fx-padding: 20;
+}
+
+.menu-box {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+.label {
+    -fx-text-fill: #2C3E50;
+}
+
+.title {
+    -fx-font-family: Tahoma;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.footer-title {
+    -fx-text-fill: #2C3E50;
+}
+
+.message-label {
+    -fx-text-fill: #2C3E50;
+}
+
+.message-label-red {
+    -fx-text-fill: red;
+}
+
+.button {
+    -fx-background-color: #2C3E50;
+
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+    -fx-word-wrap: break-word;
+
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #95a5a6;
+    -fx-border-width: 1;
+    -fx-padding: 8 15 8 15;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #34495E;
+}
+
+.button:focused {
+    -fx-background-color: #3d5a73;
+}
+
+HBox, VBox {
+    -fx-alignment: center ;
+    -fx-text-alignment: center;
+    -fx-padding: 3;
+    -fx-spacing: 10;
+}
+
+.loginField {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #2C3E50;
+    -fx-prompt-text-fill: #7f8c8d;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1;
+    -fx-padding: 5 10 5 10;
+
+    -fx-max-width: 200;
+    -fx-max-height: 30;
+}
+
+.loginField :focused {
+    -fx-border-color: #2C3E50;
+}
+
+.table-view {
+    -fx-background-color: #f5f7fa;
+    -fx-padding: 10;
+    -fx-selection-bar: rgba(35, 42, 57, 0.94);
+    -fx-min-width: 200;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: #2C3E50;
+}
+
+.separator {
+    -fx-background-color: #2C3E50;
+    -fx-max-width: 240;
+}
+
+.white-row .column-header{
+    -fx-background-color: rgba(236, 240, 241, 0.56);
+    -fx-text-fill: #2C3E50;
+}
+
+.red-row .column-header{
+    -fx-background-color: rgba(186, 0, 0, 0.87);
+    -fx-text-fill: #ffffff;
+}
