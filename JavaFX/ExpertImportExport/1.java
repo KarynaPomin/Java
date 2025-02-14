@@ -40,9 +40,10 @@ public class HelloApplication extends Application {
     private Stage primaryStage;
     private final ObservableList<Person> zusDraPersons = FXCollections.observableArrayList();
     private final ObservableList<Person> infdpPersons = FXCollections.observableArrayList();
-    private TableView<Person> tableView;
     File selectedDirectory;
     private final User user = new User("Admin", "Admin", "a1");
+    ObservableList<Person> selectedPersonList = FXCollections.observableArrayList();
+
 
     String pathStyle = "file:/home/karynap/IdeaProjects/ExpertImportExport/src/main/resources/pl/infobazasolution/css/Stylesheet.css";
 
@@ -280,7 +281,7 @@ public class HelloApplication extends Application {
         return scene;
     }
 
-    private void RemoveColumn(ObservableList<Person> list){
+    private void RemoveColumn(TableView<Person> tableView, ObservableList<Person> list) {
         Object col = tableView.getSelectionModel().getSelectedItem();
         tableView.getItems().remove(col);
 
@@ -300,75 +301,41 @@ public class HelloApplication extends Application {
                 labelMenu
         );
 
-        tableView = new TableView<>();
-        tableView.getStyleClass().setAll("table-view");
-        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        Label messageLabel = new Label();
+        messageLabel.getStyleClass().add("message-label");
 
-        tableView.prefWidthProperty().bind(root.widthProperty().multiply(0.9));
-        tableView.prefHeightProperty().bind(root.heightProperty().multiply(0.8));
-
-        VBox.setVgrow(tableView, Priority.ALWAYS);
-
-        TableColumn<Person, Integer> idColumn = new TableColumn<>("Lp");
-        idColumn.getStyleClass().setAll("column-header");
-        idColumn.setPrefWidth(10);
-
-        TableColumn<Person, Integer> peselColumn = new TableColumn<>("PESEL");
-        peselColumn.getStyleClass().setAll("column-header");
-        peselColumn.setPrefWidth(30);
-
-        TableColumn<Person, String> nameColumn = new TableColumn<>("Imię i nazwisko");
-        nameColumn.getStyleClass().setAll("column-header");
-
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        peselColumn.setCellValueFactory(new PropertyValueFactory<>("pesel"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-
-        tableView.getColumns().add(idColumn);
-        tableView.getColumns().add(peselColumn);
-        tableView.getColumns().add(nameColumn);
-
-        HBox table = new HBox(tableView);
-        table.setAlignment(Pos.CENTER);
-
-        VBox tableBox = new VBox(
-                table
-        );
-        tableBox.setAlignment(Pos.CENTER);
+        VBox messageBox = new VBox(messageLabel);
+        messageBox.setAlignment(Pos.CENTER);
 
         Button zusDraSelectDirectoryButton = new Button("Nowe");
         zusDraSelectDirectoryButton.setAlignment(Pos.CENTER);
         zusDraSelectDirectoryButton.setOnAction(e -> {
             ChooseFolder(primaryStage, zusDraPersons, "zus");
-            tableView.setItems(zusDraPersons);
+            messageLabel.setText("Katalog nowy: " + FILE_ZUS_DRA);
+            messageLabel.getStyleClass().add("message-label");
         });
 
         Button infDpSelectDirectoryButton = new Button("Wysłane");
         infDpSelectDirectoryButton.setAlignment(Pos.CENTER);
         infDpSelectDirectoryButton.setOnAction(e -> {
             ChooseFolder(primaryStage, infdpPersons, "inf");
-            tableView.setItems(infdpPersons);
+            messageLabel.setText("Katalog wysłany: " + FILE_INF_DP);
+            messageLabel.getStyleClass().add("message-label");
         });
-
-        Button deleteButton = new Button("Usuń");
-        deleteButton.setAlignment(Pos.CENTER);
-
-        deleteButton.setOnAction(e -> RemoveColumn(tableView.getItems()));
-
-        Label messageLabel = new Label();
-        messageLabel.getStyleClass().add("message-label");
 
         Button showNewListFilesButton = new Button("Wyświetl liste");
         showNewListFilesButton.setAlignment(Pos.CENTER);
         showNewListFilesButton.setOnAction(e -> {
             if (!foldeIsSelected){
+                messageLabel.getStyleClass().add("red");
                 messageLabel.setText("Wybierz foldery");
             }
             else if (FILE_ZUS_DRA == null){
+                messageLabel.getStyleClass().add("red");
                 messageLabel.setText("Dodaj nowy folder");
             }
             else if (FILE_INF_DP == null){
+                messageLabel.getStyleClass().add("red");
                 messageLabel.setText("Dodaj folder wysłane");
             }
             else {
@@ -382,9 +349,7 @@ public class HelloApplication extends Application {
         HBox buttonsBox = new HBox(
                 zusDraSelectDirectoryButton,
                 infDpSelectDirectoryButton,
-                deleteButton,
-                showNewListFilesButton,
-                messageLabel
+                showNewListFilesButton
         );
         buttonsBox.setAlignment(Pos.CENTER);
         buttonsBox.setSpacing(10);
@@ -399,7 +364,7 @@ public class HelloApplication extends Application {
         buttomBox.setAlignment(Pos.CENTER);
 
         root.setTop(menuBox);
-        root.setCenter(tableBox);
+        root.setCenter(messageBox);
         root.setBottom(buttomBox);
 
         Scene scene = new Scene(root, 500, 400);
@@ -492,16 +457,15 @@ public class HelloApplication extends Application {
                 labelMenu
         );
 
-        TableView<Person> tableView1 = new TableView<>();
-        tableView1.getStyleClass().setAll("table-view bg-red");
-        tableView1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        tableView1.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        TableView<Person> tableView = new TableView<>();
+        tableView.getStyleClass().setAll("table-view");
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        tableView.prefWidthProperty().bind(root.widthProperty().multiply(0.9));
+        tableView.prefHeightProperty().bind(root.heightProperty().multiply(0.8));
 
-        tableView1.prefWidthProperty().bind(root.widthProperty().multiply(0.9));
-        tableView1.prefHeightProperty().bind(root.heightProperty().multiply(0.8));
-
-        VBox.setVgrow(tableView1, Priority.ALWAYS);
+        VBox.setVgrow(tableView, Priority.ALWAYS);
 
         TableColumn<Person, Integer> idColumn = new TableColumn<>("Lp");
         idColumn.setPrefWidth(10);
@@ -518,9 +482,9 @@ public class HelloApplication extends Application {
         peselColumn.setCellValueFactory(new PropertyValueFactory<>("pesel"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
 
-        tableView1.getColumns().add(idColumn);
-        tableView1.getColumns().add(peselColumn);
-        tableView1.getColumns().add(nameColumn);
+        tableView.getColumns().add(idColumn);
+        tableView.getColumns().add(peselColumn);
+        tableView.getColumns().add(nameColumn);
 
         List<String> peselInInfdp = infdpPersons.stream().map(Person::getPesel).toList();
 
@@ -531,32 +495,33 @@ public class HelloApplication extends Application {
         });
 
 
-        tableView1.setRowFactory(tbl -> new TableRow<Person>() {
+        tableView.setRowFactory(tbl -> new TableRow<Person>() {
 
             @Override
             protected void updateItem(Person item, boolean empty) {
                 super.updateItem(item, empty);
 
                 if(item == null || empty) {
-                    setStyle(getStyle());
+                    setStyle("");
                     setTooltip(null);
                 } else {
                     if(item.getIsInList()) {
-                        setStyle(getStyle());
+                        setStyle("");
                         setTooltip(null);
                     } else {
-                        setStyle("-fx-background-color: #ffcccc; -fx-text-fill: #ffffff;");
+//                        setStyle("-fx-background-color: #ffcccc; -fx-text-fill: #ffffff;");
+                        getStyleClass().setAll("red-row");
                     }
                 }
             }
         });
 
-        tableView1.getColumns().setAll(idColumn, peselColumn, nameColumn);
-        tableView1.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableView.getColumns().setAll(idColumn, peselColumn, nameColumn);
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        tableView1.setItems(zusDraPersons);
+        tableView.setItems(zusDraPersons);
 
-        HBox table = new HBox(tableView1);
+        HBox table = new HBox(tableView);
         table.setAlignment(Pos.CENTER);
 
         VBox tableBox = new VBox(
@@ -565,7 +530,6 @@ public class HelloApplication extends Application {
         tableBox.setAlignment(Pos.CENTER);
 
         Button backButton = new Button("<<<");
-
         backButton.setOnAction(e -> {
             selectedDirectory = null;
             FILE_INF_DP = null;
@@ -575,21 +539,110 @@ public class HelloApplication extends Application {
             primaryStage.show();
         });
 
+        Button selectedPersonButton = new Button("Nowa lista");
+        selectedPersonButton.setOnAction(e -> {
+            TableView.TableViewSelectionModel<Person> personSelectionModel = tableView.getSelectionModel();
+            selectedPersonList = personSelectionModel.getSelectedItems();
+
+            primaryStage.setScene(tableSelectedViewScene());
+            primaryStage.show();
+        });
+
+        HBox buttonsBox = new HBox(
+                backButton,
+                selectedPersonButton
+        );
+        buttonsBox.setAlignment(Pos.CENTER);
+        buttonsBox.setSpacing(10);
+
         Label footer = new Label("© 2025 Wszystkie prawa zastrzeżone.");
         footer.setPadding(new Insets(10));
 
-        VBox buttomBox = new VBox(
-                backButton,
+        VBox footerBox = new VBox(
+                buttonsBox,
                 footer
         );
-        buttomBox.setAlignment(Pos.CENTER);
+        footerBox.setAlignment(Pos.CENTER);
 
         root.setTop(menuBox);
         root.setCenter(tableBox);
-        root.setBottom(buttomBox);
+        root.setBottom(footerBox);
 
         Scene scene = new Scene(root, 500, 400);
         scene.getStylesheets().add(pathStyle);
+        return scene;
+    }
+
+    public Scene tableSelectedViewScene() {
+        BorderPane root = new BorderPane();
+        HBox menu = MenuView();
+
+        TableView<Person> tableView = new TableView<>();
+        tableView.getStyleClass().setAll("table-view");
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        tableView.prefWidthProperty().bind(root.widthProperty().multiply(0.9));
+        tableView.prefHeightProperty().bind(root.heightProperty().multiply(0.8));
+
+        VBox.setVgrow(tableView, Priority.ALWAYS);
+
+        TableColumn<Person, Integer> idColumn = new TableColumn<>("Lp");
+        idColumn.setPrefWidth(10);
+        idColumn.getStyleClass().setAll("column-header");
+
+        TableColumn<Person, String> peselColumn = new TableColumn<>("PESEL");
+        peselColumn.getStyleClass().setAll("column-header");
+        peselColumn.setPrefWidth(30);
+
+        TableColumn<Person, String> nameColumn = new TableColumn<>("Imię i nazwisko");
+        nameColumn.getStyleClass().setAll("column-header");
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        peselColumn.setCellValueFactory(new PropertyValueFactory<>("pesel"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+
+        tableView.getColumns().add(idColumn);
+        tableView.getColumns().add(peselColumn);
+        tableView.getColumns().add(nameColumn);
+        tableView.setItems(selectedPersonList);
+
+        Button backButton = new Button("<<<");
+        backButton.setAlignment(Pos.CENTER);
+        backButton.setOnAction(e -> {
+            primaryStage.setScene(tableViewScene());
+            primaryStage.show();
+        });
+
+//        Button deleteButton = new Button("Usuń");
+//        deleteButton.setAlignment(Pos.CENTER);
+//        deleteButton.setOnAction(e ->{
+//            RemoveColumn(tableView, tableView.getItems());
+//        });
+
+        HBox buttonsBox = new HBox(
+                backButton
+//                ,deleteButton
+        );
+        buttonsBox.setAlignment(Pos.CENTER);
+        buttonsBox.setSpacing(10);
+
+        Label footer = new Label("© 2025 Wszystkie prawa zastrzeżone.");
+        footer.setPadding(new Insets(10));
+
+        VBox footerBox = new VBox(
+                buttonsBox,
+                footer
+        );
+        footerBox.setAlignment(Pos.CENTER);
+
+        root.setTop(menu);
+        root.setCenter(tableView);
+        root.setBottom(footerBox);
+
+        Scene scene = new Scene(root, 500, 400);
+        scene.getStylesheets().add(pathStyle);
+
         return scene;
     }
 
