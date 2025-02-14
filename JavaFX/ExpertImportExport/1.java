@@ -327,15 +327,15 @@ public class HelloApplication extends Application {
         showNewListFilesButton.setAlignment(Pos.CENTER);
         showNewListFilesButton.setOnAction(e -> {
             if (!foldeIsSelected){
-                messageLabel.getStyleClass().add("red");
+                messageLabel.getStyleClass().add("message-label-red");
                 messageLabel.setText("Wybierz foldery");
             }
             else if (FILE_ZUS_DRA == null){
-                messageLabel.getStyleClass().add("red");
+                messageLabel.getStyleClass().add("message-label-red");
                 messageLabel.setText("Dodaj nowy folder");
             }
             else if (FILE_INF_DP == null){
-                messageLabel.getStyleClass().add("red");
+                messageLabel.getStyleClass().add("message-label-red");
                 messageLabel.setText("Dodaj folder wysłane");
             }
             else {
@@ -494,7 +494,6 @@ public class HelloApplication extends Application {
             }
         });
 
-
         tableView.setRowFactory(tbl -> new TableRow<Person>() {
 
             @Override
@@ -506,11 +505,10 @@ public class HelloApplication extends Application {
                     setTooltip(null);
                 } else {
                     if(item.getIsInList()) {
-                        setStyle("");
+                        getStyleClass().add("white-row");
                         setTooltip(null);
                     } else {
-//                        setStyle("-fx-background-color: #ffcccc; -fx-text-fill: #ffffff;");
-                        getStyleClass().setAll("red-row");
+                        getStyleClass().add("red-row");
                     }
                 }
             }
