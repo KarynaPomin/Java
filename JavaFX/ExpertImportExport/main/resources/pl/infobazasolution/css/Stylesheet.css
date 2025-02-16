@@ -14,6 +14,11 @@
     -fx-spacing: 10;
 }
 
+.separator {
+    -fx-background-color: #2C3E50;
+    -fx-max-width: 240;
+}
+
 .label {
     -fx-text-fill: #2C3E50;
 }
@@ -63,7 +68,7 @@
 HBox, VBox {
     -fx-alignment: center ;
     -fx-text-alignment: center;
-    -fx-padding: 3;
+
     -fx-spacing: 10;
 }
 
@@ -95,11 +100,6 @@ HBox, VBox {
 .table-view .column-header, .table-view .filler {
     -fx-background-color: #ecf0f1;
     -fx-text-fill: #2C3E50;
-}
-
-.separator {
-    -fx-background-color: #2C3E50;
-    -fx-max-width: 240;
 }
 
 .white-row .column-header{
