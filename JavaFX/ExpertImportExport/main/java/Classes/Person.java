@@ -12,10 +12,12 @@ public class Person {
 
     public boolean isInList;
 
-    public Person() {}
+    public Person() {
+        this.active = new SimpleBooleanProperty(false);
+    }
 
     public Person(Integer id, String pesel, String name, String secondname) {
-        this.active = new SimpleBooleanProperty(true);;
+        this.active = new SimpleBooleanProperty(false);
         this.id = id;
         this.pesel = pesel;
         this.name = name;
