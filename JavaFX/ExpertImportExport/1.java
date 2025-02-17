@@ -1,21 +1,20 @@
 package pl.infobazasolution.expertimportexport;
 
+import Classes.Memory;
 import Classes.Person;
 import Classes.User;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -23,7 +22,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -38,23 +36,20 @@ import java.util.stream.Collectors;
 
 public class HelloApplication extends Application {
     private Stage primaryStage;
+    private double widthScene = 500;
+    private double heightScene = 400;
     private final ObservableList<Person> zusDraPersons = FXCollections.observableArrayList();
     private final ObservableList<Person> infdpPersons = FXCollections.observableArrayList();
     File selectedDirectory;
     private final User user = new User("Admin", "Admin", "a1");
-    ObservableList<Person> selectedPersonList = FXCollections.observableArrayList();
+    private final ObservableList<User> users = FXCollections.observableArrayList();
+    ObservableList<Person> selectedPersons = FXCollections.observableArrayList();
 
+    private String FILE_INF_DP;
+    private String FILE_ZUS_DRA;
 
     String pathStyle = "file:/home/karynap/IdeaProjects/ExpertImportExport/src/main/resources/pl/infobazasolution/css/Stylesheet.css";
-
-//    private final String FILE_INF_DP = "/home/karynap/IdeaProjects/ExpertImportExport/src/main/java/Text/plikiXML/INF_DP/";
-//    private final String FILE_ZUS_DRA = "/home/karynap/IdeaProjects/ExpertImportExport/src/main/java/Text/plikiXML/ZUS_DRA/";
-
-    private String FILE_INF_DP = null;
-    private String FILE_ZUS_DRA = null;
-
-    private boolean foldeIsSelected = false;
-//    private DirectoryChooser directoryChooser;
+    String pathImgLogo = "/home/karynap/IdeaProjects/ExpertImportExport/src/images/logo.jpg";
 
     public static void main(String[] args) {
         launch(args);
@@ -66,22 +61,23 @@ public class HelloApplication extends Application {
 
         primaryStage.setTitle("Aplikacja JavaFX");
 
-//        zusDraPersons = FXCollections.observableArrayList();
-//        LoadFiles(new File(FILE_ZUS_DRA), zusDraPersons);
-//
-//        infdpPersons = FXCollections.observableArrayList();
-//        LoadFiles(new File(FILE_INF_DP), infdpPersons);
-
         primaryStage.setScene(loginScene());
         primaryStage.show();
     }
 
-    private Scene loginScene() {
+    private Label infLabel(){
+        Label footer = new Label("© 2025 Wszystkie prawa zastrzeżone.");
+        footer.getStyleClass().add("footer-title");
+
+        return footer;
+    }
+
+    private Scene loginScene() {        
         BorderPane root = new BorderPane();
 
         InputStream stream;
         try {
-            stream = new FileInputStream("/home/karynap/IdeaProjects/ExpertImportExport/src/images/logo.jpg");
+            stream = new FileInputStream(pathImgLogo);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -90,38 +86,35 @@ public class HelloApplication extends Application {
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         imageView.setFitWidth(100);
-//        imageView.getStyleClass().setAll("imageView-login");
         imageView.setPreserveRatio(true);
 
         Label title = new Label("Logowanie");
-        title.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
+        title.getStyleClass().add("title");
 
         Separator separator = new Separator(Orientation.HORIZONTAL);
         separator.setMinWidth(50);
         separator.setMaxWidth(240);
 
         TextField loginField = new TextField();
+        loginField.getStyleClass().add("loginField");
         loginField.setPromptText("Adres e-mail");
-        loginField.getStyleClass().setAll("loginField");
-        loginField.setMinWidth(30);
-        loginField.setMaxWidth(200);
 
         PasswordField passwordField = new PasswordField();
-        passwordField.getStyleClass().setAll("loginField");
+        passwordField.getStyleClass().add("loginField");
         passwordField.setPromptText("Hasło");
-        passwordField.setMinWidth(30);
-        passwordField.setMaxWidth(200);
 
         Button loginButton = new Button("Zaloguj się");
 
-        loginButton.setAlignment(Pos.CENTER);
-        loginButton.setMinWidth(50);
-        loginButton.setMaxWidth(100);
-
-        Label messageLabel = new Label();
-        messageLabel.getStyleClass().add("message-label");
-
         loginButton.setOnAction(e -> {
+            String userName = loginField.getText();
+            String userPassword = passwordField.getText();
+            User user = new User(userName, userName, userPassword);
+            if (!users.contains(user)) {
+                users.add(user);
+                user.build();
+            }
+            Memory.getInstance().print();
+
 //            if (loginField.getText().isBlank() || passwordField.getText().isBlank()) {
 //                messageLabel.setText("Pole nie może być puste.");
 //            }
@@ -144,33 +137,25 @@ public class HelloApplication extends Application {
                 separator,
                 loginField,
                 passwordField,
-                loginButton,
-                messageLabel
+                loginButton
         );
-        formBox.setAlignment(Pos.CENTER);
-        formBox.setSpacing(10);
 
-        Label footer = new Label("© 2025 Wszystkie prawa zastrzeżone.");
-        footer.setPadding(new Insets(10));
-        footer.setAlignment(Pos.CENTER);
+        Label footer = infLabel();
 
         root.setCenter(formBox);
         root.setBottom(footer);
         BorderPane.setAlignment(footer, Pos.CENTER);
 
-        Scene scene = new Scene(root, 500, 400);
-        //pathStyle = Objects.requireNonNull(getClass().getResource("/pl/infobazasolution/css/Stylesheet.css")).toExternalForm();
+        Scene scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add(pathStyle);
-//        scene.getStylesheets().add(getClass().getResource(pathStyle).toExternalForm());
-//        System.out.println("---" + pathStyle);
-//        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+
         return scene;
     }
 
     private HBox MenuView(){
         InputStream stream;
         try {
-            stream = new FileInputStream("/home/karynap/IdeaProjects/ExpertImportExport/src/images/logo.jpg");
+            stream = new FileInputStream(pathImgLogo);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -182,6 +167,15 @@ public class HelloApplication extends Application {
         imageView.setFitWidth(50);
         imageView.setPreserveRatio(true);
 
+        HBox menuBox = getHBox(imageView);
+        menuBox.getStyleClass().add("menu-box");
+
+        HBox.setHgrow(menuBox, Priority.ALWAYS);
+
+        return menuBox;
+    }
+
+    private HBox getHBox(ImageView imageView) {
         Button formButton = new Button("Formularz");
 
         formButton.setOnAction(e -> {
@@ -196,25 +190,20 @@ public class HelloApplication extends Application {
         });
 
         Button signOutButton = new Button("Sign Out");
-        signOutButton.setWrapText(true);
 
         signOutButton.setOnAction(e -> {
+            Memory.INSTANCE.logOut();
+
             primaryStage.setScene(loginScene());
             primaryStage.show();
         });
 
-        HBox menuBox = new HBox(
+        return new HBox(
                 imageView,
                 formButton,
                 helpButton,
                 signOutButton
         );
-        menuBox.setAlignment(Pos.CENTER);
-        menuBox.setSpacing(10);
-
-        HBox.setHgrow(menuBox, Priority.ALWAYS);
-
-        return menuBox;
     }
 
     private HBox LabelMenuView(){
@@ -243,52 +232,42 @@ public class HelloApplication extends Application {
         }
 
         Label loginLabel = new Label(
-                "Witaj " + user.name + " w Systemie. " +
-                "Dziś jest " + dayOfWeek + " " + dayOfMonth + "." + month + "." + data.getYear());
+                "Witaj " + Memory.INSTANCE.getUsername() + " w Systemie. " +
+                        "Dziś jest " + dayOfWeek + " " + dayOfMonth + "." + month + "." + data.getYear());
         loginLabel.setWrapText(true);
-        loginLabel.setMinWidth(100);
 
-        HBox hBox = new HBox(
+        return new HBox(
                 loginLabel
         );
-        hBox.setAlignment(Pos.CENTER);
-
-        return hBox;
     }
 
     private Scene mainScene() {
+        widthScene = primaryStage.getWidth();
+        heightScene = primaryStage.getHeight();
+        primaryStage.setWidth(widthScene);
+        primaryStage.setHeight(heightScene);
+
         BorderPane root = new BorderPane();
 
         HBox menuBox = MenuView();
 
         HBox loginLabel = LabelMenuView();
-        loginLabel.setAlignment(Pos.CENTER);
 
-        Label footer = new Label("© 2025 Wszystkie prawa zastrzeżone.");
-        footer.setPadding(new Insets(10));
-        footer.setAlignment(Pos.CENTER);
-
-        VBox footerBox = new VBox(footer);
-        footerBox.setAlignment(Pos.CENTER);
+        VBox footerBox = new VBox(
+                infLabel()
+        );
 
         root.setTop(menuBox);
         root.setCenter(loginLabel);
         root.setBottom(footerBox);
 
-        Scene scene = new Scene(root, 500, 400);
+        Scene scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add(pathStyle);
-//        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+
+        System.out.println("Login: " + Memory.INSTANCE.getUsername());
+        System.out.println("Hasło: " + Memory.INSTANCE.getPassword());
+
         return scene;
-    }
-
-    private void RemoveColumn(TableView<Person> tableView, ObservableList<Person> list) {
-        Object col = tableView.getSelectionModel().getSelectedItem();
-        tableView.getItems().remove(col);
-
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).setId(i+1);
-        }
-        tableView.setItems(list);
     }
 
     private Scene catalogScene() {
@@ -301,46 +280,64 @@ public class HelloApplication extends Application {
                 labelMenu
         );
 
-        Label messageLabel = new Label();
-        messageLabel.getStyleClass().add("message-label");
+        Label messageZusLabel = new Label();
+        messageZusLabel.getStyleClass().add("message-label");
+        messageZusLabel.setWrapText(true);
 
-        VBox messageBox = new VBox(messageLabel);
-        messageBox.setAlignment(Pos.CENTER);
+        Label messageInfLabel = new Label();
+        messageInfLabel.getStyleClass().add("message-label");
+        messageInfLabel.setWrapText(true);
+
+        VBox messageBox = new VBox(
+                messageZusLabel,
+                messageInfLabel
+        );
 
         Button zusDraSelectDirectoryButton = new Button("Nowe");
-        zusDraSelectDirectoryButton.setAlignment(Pos.CENTER);
         zusDraSelectDirectoryButton.setOnAction(e -> {
             ChooseFolder(primaryStage, zusDraPersons, "zus");
-            messageLabel.setText("Katalog nowy: " + FILE_ZUS_DRA);
-            messageLabel.getStyleClass().add("message-label");
+            messageZusLabel.setText("Katalog nowy: " + FILE_ZUS_DRA);
+            messageZusLabel.getStyleClass().remove("message-label-red");
+            messageZusLabel.getStyleClass().add("message-label");
         });
 
         Button infDpSelectDirectoryButton = new Button("Wysłane");
-        infDpSelectDirectoryButton.setAlignment(Pos.CENTER);
         infDpSelectDirectoryButton.setOnAction(e -> {
             ChooseFolder(primaryStage, infdpPersons, "inf");
-            messageLabel.setText("Katalog wysłany: " + FILE_INF_DP);
-            messageLabel.getStyleClass().add("message-label");
+            messageZusLabel.setText("Katalog wysłany: " + FILE_INF_DP);
+            messageZusLabel.getStyleClass().remove("message-label-red");
+            messageZusLabel.getStyleClass().add("message-label");
         });
 
+        if (FILE_ZUS_DRA != null && FILE_INF_DP != null) {
+            messageZusLabel.setText("Katalog nowy: " + FILE_ZUS_DRA);
+            messageZusLabel.getStyleClass().remove("message-label-red");
+            messageZusLabel.getStyleClass().add("message-label");
+
+            messageInfLabel.setText("Katalog wysłany: " + FILE_INF_DP);
+        }
+
         Button showNewListFilesButton = new Button("Wyświetl liste");
-        showNewListFilesButton.setAlignment(Pos.CENTER);
         showNewListFilesButton.setOnAction(e -> {
-            if (!foldeIsSelected){
-                messageLabel.getStyleClass().add("message-label-red");
-                messageLabel.setText("Wybierz foldery");
+            messageZusLabel.getStyleClass().remove("message-label");
+            messageInfLabel.getStyleClass().remove("message-label");
+
+            if (FILE_ZUS_DRA == null && FILE_INF_DP == null) {
+                messageZusLabel.setText("Wybierz foldery");
+                messageZusLabel.getStyleClass().add("message-label-red");
+
+                messageInfLabel.setText("");
+
             }
-            else if (FILE_ZUS_DRA == null){
-                messageLabel.getStyleClass().add("message-label-red");
-                messageLabel.setText("Dodaj nowy folder");
+            else if (FILE_ZUS_DRA == null) {
+                messageZusLabel.setText("Dodaj nowy folder");
+                messageZusLabel.getStyleClass().add("message-label-red");
             }
             else if (FILE_INF_DP == null){
-                messageLabel.getStyleClass().add("message-label-red");
-                messageLabel.setText("Dodaj folder wysłane");
+                messageInfLabel.setText("Dodaj folder wysłane");
+                messageInfLabel.getStyleClass().add("message-label-red");
             }
             else {
-                System.out.println(FILE_ZUS_DRA);
-                System.out.println(FILE_INF_DP);
                 primaryStage.setScene(tableViewScene());
                 primaryStage.show();
             }
@@ -351,24 +348,19 @@ public class HelloApplication extends Application {
                 infDpSelectDirectoryButton,
                 showNewListFilesButton
         );
-        buttonsBox.setAlignment(Pos.CENTER);
-        buttonsBox.setSpacing(10);
-
-        Label footer = new Label("© 2025 Wszystkie prawa zastrzeżone.");
-        footer.setPadding(new Insets(10));
 
         VBox buttomBox = new VBox(
                 buttonsBox,
-                footer
+                infLabel()
         );
-        buttomBox.setAlignment(Pos.CENTER);
 
         root.setTop(menuBox);
         root.setCenter(messageBox);
         root.setBottom(buttomBox);
 
-        Scene scene = new Scene(root, 500, 400);
+        Scene scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add(pathStyle);
+
         return scene;
     }
 
@@ -376,16 +368,20 @@ public class HelloApplication extends Application {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setInitialDirectory(new File("src"));
         selectedDirectory = directoryChooser.showDialog(stage);
+        String file = selectedDirectory.getAbsolutePath();
 
-        if (nameFile.equals("zus"))
-            FILE_ZUS_DRA = selectedDirectory.getAbsolutePath();
-        else if (nameFile.equals("inf"))
-            FILE_INF_DP = selectedDirectory.getAbsolutePath();
-
-        if (selectedDirectory != null) {
-            LoadFiles(selectedDirectory, FileList);
+        if (nameFile.equals("zus")){
+            Memory.INSTANCE.setZusDraPersonsFile(file);
+            FILE_ZUS_DRA = Memory.INSTANCE.getZusDraPersonsFile();
+            System.out.println("Nowy: " + FILE_ZUS_DRA);
         }
-        foldeIsSelected = true;
+        else if (nameFile.equals("inf")){
+            Memory.INSTANCE.setInfdpPersonsFile(file);
+            FILE_INF_DP = Memory.INSTANCE.getInfdpPersonsFile();
+            System.out.println("Wysłany: " + FILE_INF_DP);
+        }
+
+        LoadFiles(selectedDirectory, FileList);
     }
 
     private void LoadFiles(File directory, ObservableList<Person> FileList) {
@@ -409,7 +405,7 @@ public class HelloApplication extends Application {
 
     private Map<String, String> OpenFile(String pathFile) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        Map<String, String> userDictionatry = new HashMap<>();
+        Map<String, String> userDictionary = new HashMap<>();
 
         try {
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
@@ -420,7 +416,6 @@ public class HelloApplication extends Application {
 
             doc.getDocumentElement().normalize();
 
-            // get staff
             NodeList nodeList = doc.getElementsByTagName("Dane");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -430,13 +425,13 @@ public class HelloApplication extends Application {
                     Element element = (Element) node;
 
                     String pesel = element.getElementsByTagName("PESEL").item(0).getTextContent();
-                    userDictionatry.put("pesel", pesel);
+                    userDictionary.put("pesel", pesel);
 
                     String name = element.getElementsByTagName("Imie").item(0).getTextContent();
-                    userDictionatry.put("name", name);
+                    userDictionary.put("name", name);
 
                     String secondname = element.getElementsByTagName("Nazwisko").item(0).getTextContent();
-                    userDictionatry.put("secondname", secondname);
+                    userDictionary.put("secondname", secondname);
                 }
             }
 
@@ -444,11 +439,13 @@ public class HelloApplication extends Application {
             ex.printStackTrace();
         }
 
-        return userDictionatry;
+        return userDictionary;
     }
 
     public Scene tableViewScene() {
         BorderPane root = new BorderPane();
+        System.out.println("OPEN: " + FILE_ZUS_DRA);
+        System.out.println("OPEN: " + FILE_INF_DP);
 
         HBox menu = MenuView();
         HBox labelMenu = LabelMenuView();
@@ -458,33 +455,47 @@ public class HelloApplication extends Application {
         );
 
         TableView<Person> tableView = new TableView<>();
-        tableView.getStyleClass().setAll("table-view");
+        tableView.getStyleClass().add("table-view");
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
         tableView.prefWidthProperty().bind(root.widthProperty().multiply(0.9));
         tableView.prefHeightProperty().bind(root.heightProperty().multiply(0.8));
-
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         VBox.setVgrow(tableView, Priority.ALWAYS);
 
+        tableView.setEditable(true);
+
+        TableColumn<Person, Boolean> activeCheckBoxColumn = new TableColumn<>("");
+        activeCheckBoxColumn.setCellValueFactory(cd -> cd.getValue().activeProperty());
+        activeCheckBoxColumn.setCellFactory(CheckBoxTableCell.forTableColumn(activeCheckBoxColumn));
+        activeCheckBoxColumn.getStyleClass().add("column-header");
+        activeCheckBoxColumn.setPrefWidth(10);
+
+        zusDraPersons.forEach(person -> person.activeProperty().addListener((obs, wasSelected, isNowSelected) -> {
+            if (isNowSelected) {
+                if (!selectedPersons.contains(person)) {
+                    selectedPersons.add(person);
+                }
+            } else {
+                selectedPersons.remove(person);
+                person.setActiveProperty(false);
+            }
+
+            Memory.INSTANCE.setSelectedPersonsList(selectedPersons);
+        }));
+
         TableColumn<Person, Integer> idColumn = new TableColumn<>("Lp");
-        idColumn.setPrefWidth(10);
-        idColumn.getStyleClass().setAll("column-header");
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColumn.getStyleClass().add("column-header");
+        idColumn.setPrefWidth(15);
 
         TableColumn<Person, String> peselColumn = new TableColumn<>("PESEL");
-        peselColumn.getStyleClass().setAll("column-header");
+        peselColumn.setCellValueFactory(new PropertyValueFactory<>("pesel"));
+        peselColumn.getStyleClass().add("column-header");
         peselColumn.setPrefWidth(30);
 
         TableColumn<Person, String> nameColumn = new TableColumn<>("Imię i nazwisko");
-        nameColumn.getStyleClass().setAll("column-header");
-
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        peselColumn.setCellValueFactory(new PropertyValueFactory<>("pesel"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-
-        tableView.getColumns().add(idColumn);
-        tableView.getColumns().add(peselColumn);
-        tableView.getColumns().add(nameColumn);
+        nameColumn.getStyleClass().add("column-header");
 
         List<String> peselInInfdp = infdpPersons.stream().map(Person::getPesel).toList();
 
@@ -494,19 +505,17 @@ public class HelloApplication extends Application {
             }
         });
 
-        tableView.setRowFactory(tbl -> new TableRow<Person>() {
+        tableView.setRowFactory(tbl -> new TableRow<>() {
 
             @Override
             protected void updateItem(Person item, boolean empty) {
                 super.updateItem(item, empty);
 
-                if(item == null || empty) {
+                if (item == null || empty) {
                     setStyle("");
-                    setTooltip(null);
                 } else {
-                    if(item.getIsInList()) {
+                    if (item.getIsInList()) {
                         getStyleClass().add("white-row");
-                        setTooltip(null);
                     } else {
                         getStyleClass().add("red-row");
                     }
@@ -514,60 +523,48 @@ public class HelloApplication extends Application {
             }
         });
 
-        tableView.getColumns().setAll(idColumn, peselColumn, nameColumn);
-        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableView.getColumns().add(activeCheckBoxColumn);
+        tableView.getColumns().add(idColumn);
+        tableView.getColumns().add(peselColumn);
+        tableView.getColumns().add(nameColumn);
 
+        UpdateId(zusDraPersons);
         tableView.setItems(zusDraPersons);
 
         HBox table = new HBox(tableView);
-        table.setAlignment(Pos.CENTER);
 
         VBox tableBox = new VBox(
                 table
         );
-        tableBox.setAlignment(Pos.CENTER);
-
-        Button backButton = new Button("<<<");
-        backButton.setOnAction(e -> {
-            selectedDirectory = null;
-            FILE_INF_DP = null;
-            FILE_ZUS_DRA = null;
-
-            primaryStage.setScene(catalogScene());
-            primaryStage.show();
-        });
 
         Button selectedPersonButton = new Button("Nowa lista");
         selectedPersonButton.setOnAction(e -> {
-            TableView.TableViewSelectionModel<Person> personSelectionModel = tableView.getSelectionModel();
-            selectedPersonList = personSelectionModel.getSelectedItems();
+            if (selectedPersons.isEmpty()) {
+                TableView.TableViewSelectionModel<Person> personSelectionModel = tableView.getSelectionModel();
+                selectedPersons.clear();
+                selectedPersons.addAll(personSelectionModel.getSelectedItems());
+            }
 
             primaryStage.setScene(tableSelectedViewScene());
             primaryStage.show();
         });
 
         HBox buttonsBox = new HBox(
-                backButton,
                 selectedPersonButton
         );
-        buttonsBox.setAlignment(Pos.CENTER);
-        buttonsBox.setSpacing(10);
-
-        Label footer = new Label("© 2025 Wszystkie prawa zastrzeżone.");
-        footer.setPadding(new Insets(10));
 
         VBox footerBox = new VBox(
                 buttonsBox,
-                footer
+                infLabel()
         );
-        footerBox.setAlignment(Pos.CENTER);
 
         root.setTop(menuBox);
         root.setCenter(tableBox);
         root.setBottom(footerBox);
 
-        Scene scene = new Scene(root, 500, 400);
+        Scene scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add(pathStyle);
+
         return scene;
     }
 
@@ -575,62 +572,92 @@ public class HelloApplication extends Application {
         BorderPane root = new BorderPane();
         HBox menu = MenuView();
 
+        for(Person person : Memory.INSTANCE.getSelectedPersonsList()) {
+            System.out.println(person.getPesel());
+        }
+
         TableView<Person> tableView = new TableView<>();
-        tableView.getStyleClass().setAll("table-view");
+        tableView.getStyleClass().add("table-view");
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        tableView.prefWidthProperty().bind(root.widthProperty().multiply(0.9));
+        tableView.prefHeightProperty().bind(root.heightProperty().multiply(0.8));
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        VBox.setVgrow(tableView, Priority.ALWAYS);
 
         tableView.prefWidthProperty().bind(root.widthProperty().multiply(0.9));
         tableView.prefHeightProperty().bind(root.heightProperty().multiply(0.8));
 
-        VBox.setVgrow(tableView, Priority.ALWAYS);
-
         TableColumn<Person, Integer> idColumn = new TableColumn<>("Lp");
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColumn.getStyleClass().add("column-header");
         idColumn.setPrefWidth(10);
-        idColumn.getStyleClass().setAll("column-header");
 
         TableColumn<Person, String> peselColumn = new TableColumn<>("PESEL");
-        peselColumn.getStyleClass().setAll("column-header");
+        peselColumn.setCellValueFactory(new PropertyValueFactory<>("pesel"));
+        peselColumn.getStyleClass().add("column-header");
         peselColumn.setPrefWidth(30);
 
         TableColumn<Person, String> nameColumn = new TableColumn<>("Imię i nazwisko");
-        nameColumn.getStyleClass().setAll("column-header");
-
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        peselColumn.setCellValueFactory(new PropertyValueFactory<>("pesel"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        nameColumn.getStyleClass().add("column-header");
+
+        TableColumn<Person, Boolean> isInListColumn = new TableColumn<>("Nowy");
+        isInListColumn.setCellValueFactory(new PropertyValueFactory<>("isInList"));
+        isInListColumn.getStyleClass().add("column-header");
+
+        isInListColumn.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item ? "Nie" : "Tak");
+                }
+            }
+        });
 
         tableView.getColumns().add(idColumn);
         tableView.getColumns().add(peselColumn);
         tableView.getColumns().add(nameColumn);
+        tableView.getColumns().add(isInListColumn);
+
+        tableView.setRowFactory(tbl -> new TableRow<>() {
+
+            @Override
+            protected void updateItem(Person item, boolean empty) {
+                super.updateItem(item, empty);
+                getStyleClass().add("white-row");
+            }
+        });
+
+        ObservableList<Person> selectedPersonList = Memory.INSTANCE.getSelectedPersonsList();
+        Collections.sort(selectedPersonList, Comparator.comparing(Person::getPesel));
+        UpdateId(selectedPersonList);
         tableView.setItems(selectedPersonList);
 
         Button backButton = new Button("<<<");
         backButton.setAlignment(Pos.CENTER);
         backButton.setOnAction(e -> {
+//            if (!selectedPersonList.isEmpty()) {
+//                selectedPersonList.clear();
+//                zusDraPersons.forEach(person -> person.activeProperty().set(false));
+//            }
+
             primaryStage.setScene(tableViewScene());
             primaryStage.show();
         });
 
-//        Button deleteButton = new Button("Usuń");
-//        deleteButton.setAlignment(Pos.CENTER);
-//        deleteButton.setOnAction(e ->{
-//            RemoveColumn(tableView, tableView.getItems());
-//        });
-
         HBox buttonsBox = new HBox(
                 backButton
-//                ,deleteButton
         );
         buttonsBox.setAlignment(Pos.CENTER);
         buttonsBox.setSpacing(10);
 
-        Label footer = new Label("© 2025 Wszystkie prawa zastrzeżone.");
-        footer.setPadding(new Insets(10));
-
         VBox footerBox = new VBox(
                 buttonsBox,
-                footer
+                infLabel()
         );
         footerBox.setAlignment(Pos.CENTER);
 
@@ -638,10 +665,18 @@ public class HelloApplication extends Application {
         root.setCenter(tableView);
         root.setBottom(footerBox);
 
-        Scene scene = new Scene(root, 500, 400);
+        Scene scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add(pathStyle);
 
         return scene;
+    }
+
+    public void UpdateId(ObservableList<Person> persons) {
+        int id = 0;
+        for(Person person : persons) {
+            person.setId(id + 1);
+            id++;
+        }
     }
 
     public Scene helpScene() {
@@ -666,9 +701,9 @@ public class HelloApplication extends Application {
         root.setTop(topBox);
         root.setCenter(webView);
 
-        Scene scene = new Scene(root, 500, 400);
+        Scene scene = new Scene(root, widthScene, heightScene);
         scene.getStylesheets().add(pathStyle);
-//        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+
         return scene;
     }
 }
