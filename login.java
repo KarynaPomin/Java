@@ -61,7 +61,7 @@ public class HelloApplication extends Application {
                 response.append(responseLine.trim());
             }
 
-            return response.toString(); // Return JSON response
+            return response.toString(); 
 
         } catch (Exception e) {
             return "Login error: " + e.getMessage();
