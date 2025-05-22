@@ -1,0 +1,14 @@
+.text-field {
+    -fx-pref-height: 30px;
+    -fx-font-size: 14px;
+}
+
+.combo-box {
+    -fx-pref-height: 30px;
+    -fx-font-size: 14px;
+}
+
+.table-view {
+    -fx-border-color: #000000;
+    -fx-border-radius: 5px;
+}
